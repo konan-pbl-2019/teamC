@@ -1,0 +1,18 @@
+チームC
+
+進捗状況
+　　・ゲームに使うイラスト、エフェクトの作成(斎藤)
+　　・PlayerControllarクラスの追加、keyeventの追加(四方)
+　　・BaseObject、Timer、BaseItem、Animator、IAnimationの追加(中村)
+    ・BasePeople, IAct, IController追加(地道)
+　　・
+
+問題
+　　・上視点の1P,2Pのイラストが見つからない
+　　・音楽をかけることができない
+　　・
+
+次回、進行させるところ
+　　・BGM、効果音の実装
+　　・GUIの作成
+　　・
