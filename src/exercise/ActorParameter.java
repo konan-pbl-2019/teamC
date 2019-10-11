@@ -21,11 +21,12 @@ public class ActorParameter {
 	public void SetHp(float fhp) {
 		hp = fhp;
 	}
+
 	public void DecreaseHp(float value) {
 		hp -= value;
 	}
 	public float GetMaxHp() {
-		return maxHp;
+		return hp;
 	}
 	public void SetMaxHp(float fmaxHp) {
 		maxHp = fmaxHp;
