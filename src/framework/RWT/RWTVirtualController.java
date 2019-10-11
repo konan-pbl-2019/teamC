@@ -97,7 +97,11 @@ public class RWTVirtualController {
 		RWTVirtualController.keyBind(KeyEvent.VK_CONTROL, 1, RWTVirtualController.BUTTON_C);	// ctrl
 		RWTVirtualController.keyBind(KeyEvent.VK_P, 1, RWTVirtualController.BUTTON_D);	// p
 		RWTVirtualController.keyBind(KeyEvent.VK_ADD, 1, RWTVirtualController.USE_ITEM2);	//enter
-		RWTVirtualController.keyBind(KeyEvent.VK_MULTIPLY, 1, RWTVirtualController.ATTACK_WEAPON2);	//plus
+		RWTVirtualController.keyBind(KeyEvent.VK_MULTIPLY
+				
+				
+				
+				, 1, RWTVirtualController.ATTACK_WEAPON2);	//plus
 
 
 
