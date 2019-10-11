@@ -45,16 +45,14 @@ public class ExerciseGame extends SimpleShootingGame {
 		setViewRange(30, 30);
 
 		myShip.setPosition(10, 0);
+
+		BaseObject baseObject = new BaseObject(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), 0, new Vector2(-10,0));
+		baseObject.Display(universe);
 	}
 
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
-		if (virtualController.isKeyDown(0, RWTVirtualController.RIGHT)) {
-			myShip.moveRight(20);
-		}
-		if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
-			myShip.moveLeft(20);
-		}
+
 	}
 
 	@Override
