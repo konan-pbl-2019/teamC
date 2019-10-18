@@ -1,5 +1,5 @@
 package exercise;
-
+//
 public class EnemyController implements IController {
 	Vector2 center = new Vector2(0, 0);
 	public void Run(BasePeople people) {
