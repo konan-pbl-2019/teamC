@@ -40,7 +40,7 @@ public class ExerciseGame extends SimpleShootingGame {
 		universe.placeLight(amblight);
 
 		// îwåiÇçÏê¨Ç∑ÇÈ
-		buildSkyBox(universe);
+		//buildSkyBox(universe);
 
 		myShip = new Sprite("data\\images\\MyShip.gif");
 		universe.place(myShip);
@@ -48,28 +48,47 @@ public class ExerciseGame extends SimpleShootingGame {
 		setViewRange(30, 30);
 
 		myShip.setPosition(10, 0);
-		BaseObject gui1 = new BaseObject(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), 0, new Vector2(-10,10));
-		gui1.Display(universe);
-		BaseObject gui2 = new BaseObject(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), 0, new Vector2(-10,0));
-		gui2.Display(universe);
-		BaseObject gui3 = new BaseObject(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), 0, new Vector2(-10,-10));
-		gui3.Display(universe);
-		baseObject.add(gui1);
-		baseObject.add(gui2);
-		baseObject.add(gui3);
+		BaseObject gui1P = new BaseObject(new Sprite("data\\ImagesTeamC\\1P.jpg"), new Vector2(10,10), 0, new Vector2(-13,-12));
+		gui1P.Display(universe);
+		BaseObject gui2P = new BaseObject(new Sprite("data\\ImagesTeamC\\2P1.jpg"), new Vector2(0,0), 0, new Vector2(2,-12));
+		gui2P.Display(universe);
+		
+		BaseObject guiHP1base = new BaseObject(new Sprite("data\\ImagesTeamC\\zerohpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(-8.5f,-11.5f));
+		guiHP1base.Display(universe);
+		BaseObject guiHP1full = new BaseObject(new Sprite("data\\ImagesTeamC\\fullhpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(-8.5f,-11.5f));
+		guiHP1full.Display(universe);
+		guiHP1full.GetImage().SetScale(1.0f, 0.5f);
+		
+		BaseObject guiHP2base = new BaseObject(new Sprite("data\\ImagesTeamC\\zerohpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(6.5f,-11.5f));
+		guiHP2base.Display(universe);
+		BaseObject guiHP2full = new BaseObject(new Sprite("data\\ImagesTeamC\\fullhpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(6.5f,-11.5f));
+		guiHP2full.Display(universe);
+		guiHP2full.GetImage().SetScale(1.0f, 0.5f);
 
+		BaseObject guishelter = new BaseObject(new Sprite("data\\ImagesTeamC\\shelter.png",3.0f, 3.0f), new Vector2(0,0), 0, new Vector2(0,1));
+		guishelter.Display(universe);
+		
+		BaseObject guiKnife1 = new BaseObject(new Sprite("data\\ImagesTeamC\\knife.png", 1.0f, 1.3f), new Vector2(0,0), 0, new Vector2(-4.0f,-12));
+		guiKnife1.Display(universe);
+		BaseObject guiKnife2 = new BaseObject(new Sprite("data\\ImagesTeamC\\knife.png", 1.0f, 1.3f), new Vector2(0,0), 0, new Vector2(11,-12));
+		guiKnife2.Display(universe);
+		
+		
 
-//		universe2 = universe;
+		baseObject.add(gui1P);
+		baseObject.add(gui2P);
+		baseObject.add(guiKnife1);
+		baseObject.add(guiKnife2);
+		baseObject.add(guiHP1base);
+		baseObject.add(guiHP1full);
+		baseObject.add(guiHP2base);
+		baseObject.add(guiHP2full);
+		baseObject.add(guishelter);
 
-		BaseItem baseItem = new BaseItem(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), new Vector2(-5,0));
-		baseItem.Display(universe);
 	}
 
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
-		for(int i=0; i<baseObject.size(); i++) {
-			baseObject.get(i).GetImage().moveLeft(1);
-		}
 	}
 
 	@Override

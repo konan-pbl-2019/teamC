@@ -3,23 +3,15 @@ package exercise;
 import framework.game2D.Sprite;
 import framework.model3D.Universe;
 
-public abstract class BasePeople {
-
+public class BaseItem {
 	private Sprite image;
 	private Vector2 size;
-	private float radian;
 	private Vector2 position;
-	private IController baseController;
-	//private IAct iact;
-	private ActorParameter actorParameter;
 
-	public BasePeople(Sprite fimage, Vector2 fsize, float fradian, Vector2 fposition) {
+	public BaseItem(Sprite fimage, Vector2 fsize, Vector2 fposition) {
 		image = fimage;
 		size = fsize;
-		radian = fradian;
 		position = fposition;
-
-		actorParameter = new ActorParameter(10,10,10,10,10);
 	}
 
 	public Sprite GetImage() {
@@ -36,13 +28,6 @@ public abstract class BasePeople {
 		size = fsize;
 	}
 
-	public float GetRadian() {
-		return radian;
-	}
-	public void SetRadian(float fradian) {
-		radian = fradian;
-	}
-
 	public Vector2 GetPosition() {
 		return position;
 	}
@@ -50,10 +35,16 @@ public abstract class BasePeople {
 		position = fposition;
 	}
 
+	public void HitPlayer() {
+
+	}
+
 	public void Display(Universe universe) {
 		image.setPosition(position.x, position.y);
 		universe.place(image);
 	}
 
-	public abstract void Run();
+	public void Run() {
+
+	}
 }
