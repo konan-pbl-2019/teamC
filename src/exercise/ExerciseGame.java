@@ -14,6 +14,7 @@ import com.sun.j3d.utils.image.TextureLoader;
 
 import framework.RWT.RWTFrame3D;
 import framework.RWT.RWTVirtualController;
+import framework.game2D.Position2D;
 import framework.game2D.Sprite;
 import framework.gameMain.SimpleShootingGame;
 import framework.model3D.BackgroundBox;
@@ -23,41 +24,41 @@ public class ExerciseGame extends SimpleShootingGame {
 	Sprite myShip;
 	private ArrayList<BaseObject>baseObject = new ArrayList<BaseObject>();
 //	private Universe universe2;
-	Sprite myShip;
 	public ArrayList<BaseObject> objects = new ArrayList<BaseObject>();
 	public ArrayList<BasePeople> enemies = new ArrayList<BasePeople>();
 	GenerateEnemyManager generateEnemyManager;
 	@Override
 	public void init(Universe universe) {
-		// 平行光源を配置する
+		// 蟷ｳ陦悟�画ｺ舌ｒ驟咲ｽｮ縺吶ｋ
         DirectionalLight dirlight = new DirectionalLight(
-        		true,                           //光のON/OFF
-                new Color3f(1.0f, 1.0f, 1.0f),  //光の色
-                new Vector3f(0.0f, -1.0f, -0.5f) //光の方向ベクトル
+        		true,                           //蜈峨�ｮON/OFF
+                new Color3f(1.0f, 1.0f, 1.0f),  //蜈峨�ｮ濶ｲ
+                new Vector3f(0.0f, -1.0f, -0.5f) //蜈峨�ｮ譁ｹ蜷代�吶け繝医Ν
         );
         dirlight.setInfluencingBounds(new BoundingSphere(new Point3d(), 10000.0));
         universe.placeLight(dirlight);
 
-		// 環境光を配置する
+		// 迺ｰ蠅�蜈峨ｒ驟咲ｽｮ縺吶ｋ
 		AmbientLight amblight = new AmbientLight(new Color3f(0.5f, 0.5f, 0.5f));
 		amblight.setInfluencingBounds(new BoundingSphere(new Point3d(), 10000.0));
 		universe.placeLight(amblight);
-
+		buildSkyBox(universe);
 
 		setViewRange(30, 30);
+		BaseObject guibar = new BaseObject(new Sprite("data\\ImagesTeamC\\statusbase.png",20.0f,4.0f, -10), new Vector2(0,0), 0, new Vector2(0,-13));
+		guibar.Display(universe);
 
-		myShip.setPosition(10, 0);
 		BaseObject gui1P = new BaseObject(new Sprite("data\\ImagesTeamC\\1P.jpg"), new Vector2(10,10), 0, new Vector2(-13,-12));
 		gui1P.Display(universe);
 		BaseObject gui2P = new BaseObject(new Sprite("data\\ImagesTeamC\\2P1.jpg"), new Vector2(0,0), 0, new Vector2(2,-12));
 		gui2P.Display(universe);
-		
+
 		BaseObject guiHP1base = new BaseObject(new Sprite("data\\ImagesTeamC\\zerohpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(-8.5f,-11.5f));
 		guiHP1base.Display(universe);
 		BaseObject guiHP1full = new BaseObject(new Sprite("data\\ImagesTeamC\\fullhpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(-8.5f,-11.5f));
 		guiHP1full.Display(universe);
 		guiHP1full.GetImage().SetScale(1.0f, 0.5f);
-		
+
 		BaseObject guiHP2base = new BaseObject(new Sprite("data\\ImagesTeamC\\zerohpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(6.5f,-11.5f));
 		guiHP2base.Display(universe);
 		BaseObject guiHP2full = new BaseObject(new Sprite("data\\ImagesTeamC\\fullhpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(6.5f,-11.5f));
@@ -66,14 +67,16 @@ public class ExerciseGame extends SimpleShootingGame {
 
 		BaseObject guishelter = new BaseObject(new Sprite("data\\ImagesTeamC\\shelter.png",3.0f, 3.0f), new Vector2(0,0), 0, new Vector2(0,1));
 		guishelter.Display(universe);
-		
-		BaseObject guiKnife1 = new BaseObject(new Sprite("data\\ImagesTeamC\\knife.png", 1.0f, 1.3f), new Vector2(0,0), 0, new Vector2(-4.0f,-12));
-		guiKnife1.Display(universe);
-		BaseObject guiKnife2 = new BaseObject(new Sprite("data\\ImagesTeamC\\knife.png", 1.0f, 1.3f), new Vector2(0,0), 0, new Vector2(11,-12));
-		guiKnife2.Display(universe);
-		
-		
 
+		BaseObject guiKnife1 = new BaseObject(new Sprite("data\\ImagesTeamC\\knifeinv.png", 1.0f, 1.3f), new Vector2(0,0), 0, new Vector2(-4.0f,-12));
+		guiKnife1.Display(universe);
+		BaseObject guiKnife2 = new BaseObject(new Sprite("data\\ImagesTeamC\\knifeinv.png", 1.0f, 1.3f), new Vector2(0,0), 0, new Vector2(11,-12));
+		guiKnife2.Display(universe);
+
+
+
+
+		baseObject.add(guibar);
 		baseObject.add(gui1P);
 		baseObject.add(gui2P);
 		baseObject.add(guiKnife1);
@@ -84,14 +87,35 @@ public class ExerciseGame extends SimpleShootingGame {
 		baseObject.add(guiHP2full);
 		baseObject.add(guishelter);
 
+
 		generateEnemyManager = new GenerateEnemyManager(universe, this);
+
+		BasePeople enemy = new Enemy1(new Sprite("data\\imagesTeamC\\knife.gif"), new Vector2(1,1), 0, new Vector2(-10,0));
+		enemy.Display(universe);
+		BasePeople enemy2 = new Enemy1(new Sprite("data\\imagesTeamC\\knife.gif"), new Vector2(1,1), 0, new Vector2(-10,0));
+		enemy2.Display(universe);
+		enemy2.GetImage().setPosition(new Position2D(-20, -10));
+		BasePeople enemy3 = new Enemy1(new Sprite("data\\imagesTeamC\\knife.gif"), new Vector2(1,1), 0, new Vector2(-10,0));
+		enemy3.Display(universe);
+		enemy3.GetImage().setPosition(new Position2D(20, 1));
+		BasePeople enemy4 = new Enemy1(new Sprite("data\\imagesTeamC\\knife.gif"), new Vector2(1,1), 0, new Vector2(-10,0));
+		enemy4.Display(universe);
+		enemy4.GetImage().setPosition(new Position2D(20, 10));
+		BasePeople enemy5 = new Enemy1(new Sprite("data\\imagesTeamC\\knife.gif"), new Vector2(1,1), 0, new Vector2(-10,0));
+		enemy5.Display(universe);
+		enemy5.GetImage().setPosition(new Position2D(-20, 10));
+		enemies.add(enemy);
+		enemies.add(enemy2);
+		enemies.add(enemy3);
+		enemies.add(enemy4);
+		enemies.add(enemy5);
 	}
 
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
 		for(BasePeople enemy : enemies) {
-			//System.out.println("runned");
 			enemy.Run();
+		}
 	}
 
 	@Override
@@ -103,7 +127,7 @@ public class ExerciseGame extends SimpleShootingGame {
 	}
 
 	/**
-	 * 背景を作成する
+	 * 閭梧勹繧剃ｽ懈�舌☆繧�
 	 * @param universe
 	 */
 	private void buildSkyBox(Universe universe) {
