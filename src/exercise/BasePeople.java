@@ -3,13 +3,13 @@ package exercise;
 import framework.game2D.Sprite;
 import framework.model3D.Universe;
 
-public class BasePeople {
+public abstract class BasePeople {
 
 	private Sprite image;
 	private Vector2 size;
 	private float radian;
 	private Vector2 position;
-	//private BaseController baseController;
+	private IController baseController;
 	//private IAct iact;
 	private ActorParameter actorParameter;
 
@@ -54,4 +54,6 @@ public class BasePeople {
 		image.setPosition(position.x, position.y);
 		universe.place(image);
 	}
+
+	public abstract void Run();
 }
