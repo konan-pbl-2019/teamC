@@ -8,6 +8,7 @@ public class BaseObject {
 	private Vector2 size;
 	private float radian;
 	private Vector2 position;
+	private ActorParameter actorParameter;
 
 	public BaseObject(Sprite fimage, Vector2 fsize, float fradian, Vector2 fposition) {
 		image = fimage;
@@ -47,6 +48,12 @@ public class BaseObject {
 	public void Display(Universe universe) {
 		image.setPosition(position.x, position.y);
 		universe.place(image);
+	}
+	public ActorParameter GetParameter() {
+		return actorParameter;
+	}
+	public void SetParameter(ActorParameter factorParameter) {
+		actorParameter = factorParameter;
 	}
 
 	public void Run() {
