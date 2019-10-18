@@ -1,15 +1,18 @@
 package exercise;
 
+import java.util.ArrayList;
+
 import framework.game2D.Sprite;
 
 public class Player extends BasePeople {
 
 	public Player(Sprite fimage, Vector2 fsize, float fradian, Vector2 fposition) {
 		super(fimage, fsize, fradian, fposition);
-		// TODO ©“®¶¬‚³‚ê‚½ƒRƒ“ƒXƒgƒ‰ƒNƒ^[EƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ã‚¹ã‚¿ãƒ–
 	}
 
 	public void Run() {
+		super.peopleDamaged.Run(this, new ArrayList<BasePeople>() {}, new ArrayList<BaseObject>() {});
 
 	}
 
