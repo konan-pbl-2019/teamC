@@ -21,25 +21,23 @@ import framework.model3D.Universe;
 
 public class ExerciseGame extends SimpleShootingGame {
 	Sprite myShip;
-	ArrayList<BaseObject> objects = new ArrayList<BaseObject>();
-
 	@Override
 	public void init(Universe universe) {
-		// •½sŒõŒ¹‚ð”z’u‚·‚é
+		// å¹³è¡Œå…‰æºã‚’é…ç½®ã™ã‚‹
         DirectionalLight dirlight = new DirectionalLight(
-        		true,                           //Œõ‚ÌON/OFF
-                new Color3f(1.0f, 1.0f, 1.0f),  //Œõ‚ÌF
-                new Vector3f(0.0f, -1.0f, -0.5f) //Œõ‚Ì•ûŒüƒxƒNƒgƒ‹
+        		true,                           //å…‰ã®ON/OFF
+                new Color3f(1.0f, 1.0f, 1.0f),  //å…‰ã®è‰²
+                new Vector3f(0.0f, -1.0f, -0.5f) //å…‰ã®æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«
         );
         dirlight.setInfluencingBounds(new BoundingSphere(new Point3d(), 10000.0));
         universe.placeLight(dirlight);
 
-		// ŠÂ‹«Œõ‚ð”z’u‚·‚é
+		// ç’°å¢ƒå…‰ã‚’é…ç½®ã™ã‚‹
 		AmbientLight amblight = new AmbientLight(new Color3f(0.5f, 0.5f, 0.5f));
 		amblight.setInfluencingBounds(new BoundingSphere(new Point3d(), 10000.0));
 		universe.placeLight(amblight);
 
-		// ”wŒi‚ðì¬‚·‚é
+		// èƒŒæ™¯ã‚’ä½œæˆã™ã‚‹
 		buildSkyBox(universe);
 
 		myShip = new Sprite("data\\images\\MyShip.gif");
@@ -48,16 +46,21 @@ public class ExerciseGame extends SimpleShootingGame {
 		setViewRange(30, 30);
 
 		myShip.setPosition(10, 0);
+		BaseObject gui1 = new BaseObject(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), 0, new Vector2(-10,10));
+		gui1.Display(universe);
+		BaseObject gui2 = new BaseObject(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), 0, new Vector2(-10,0));
+		gui2.Display(universe);
+		BaseObject gui3 = new BaseObject(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), 0, new Vector2(-10,-10));
+		gui3.Display(universe);
+		baseObject.add(gui1);
+		baseObject.add(gui2);
+		baseObject.add(gui3);
 
-		BaseObject baseObject = new BaseObject(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), 0, new Vector2(-10,0));
-		baseObject.Display(universe);
-		objects.add(baseObject);
+
 	}
 
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
-		for(BaseObject x : objects) {
-			x.GetImage().moveLeft(1);;
 		}
 	}
 
@@ -70,7 +73,7 @@ public class ExerciseGame extends SimpleShootingGame {
 	}
 
 	/**
-	 * ”wŒi‚ðì¬‚·‚é
+	 * èƒŒæ™¯ã‚’ä½œæˆã™ã‚‹
 	 * @param universe
 	 */
 	private void buildSkyBox(Universe universe) {

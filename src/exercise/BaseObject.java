@@ -42,7 +42,7 @@ public class BaseObject {
 		return position;
 	}
 	public void SetPosition(Vector2 fposition) {
-		position = fposition;
+		image.moveRight((double)fposition.x);
 	}
 
 	public void Display(Universe universe) {
