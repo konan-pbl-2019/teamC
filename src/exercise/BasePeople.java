@@ -12,6 +12,7 @@ public abstract class BasePeople {
 	private IController baseController;
 	//private IAct iact;
 	private ActorParameter actorParameter;
+	public PeopleDamaged peopleDamaged;
 
 	public BasePeople(Sprite fimage, Vector2 fsize, float fradian, Vector2 fposition) {
 		image = fimage;
@@ -20,6 +21,7 @@ public abstract class BasePeople {
 		position = fposition;
 
 		actorParameter = new ActorParameter(10,10,10,10,10);
+		peopleDamaged = new PeopleDamaged();
 	}
 
 	public Sprite GetImage() {
@@ -49,10 +51,22 @@ public abstract class BasePeople {
 	public void SetPosition(Vector2 fposition) {
 		position = fposition;
 	}
+	public IController GetController() {
+		return baseController;
+	}
+	public void SetController(IController iController) {
+		baseController = iController;
+	}
 
 	public void Display(Universe universe) {
 		image.setPosition(position.x, position.y);
 		universe.place(image);
+	}
+	public ActorParameter GetParameter() {
+		return actorParameter;
+	}
+	public void SetParameter(ActorParameter factorParameter) {
+		actorParameter = factorParameter;
 	}
 
 	public abstract void Run();

@@ -1,5 +1,5 @@
 package exercise;
 
 public interface IController {
-	void Run();
+	void Run(BasePeople people);
 }
