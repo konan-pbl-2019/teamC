@@ -22,6 +22,9 @@ import framework.model3D.Universe;
 
 public class ExerciseGame extends SimpleShootingGame {
 	Sprite myShip;
+	private ArrayList<BaseObject>baseObject = new ArrayList<BaseObject>();
+//	private Universe universe2;
+	Sprite myShip;
 	public ArrayList<BaseObject> objects = new ArrayList<BaseObject>();
 	public ArrayList<BasePeople> enemies = new ArrayList<BasePeople>();
 	GenerateEnemyManager generateEnemyManager;
@@ -41,10 +44,46 @@ public class ExerciseGame extends SimpleShootingGame {
 		amblight.setInfluencingBounds(new BoundingSphere(new Point3d(), 10000.0));
 		universe.placeLight(amblight);
 
-		// 背景を作成する
-		buildSkyBox(universe);
 
 		setViewRange(30, 30);
+
+		myShip.setPosition(10, 0);
+		BaseObject gui1P = new BaseObject(new Sprite("data\\ImagesTeamC\\1P.jpg"), new Vector2(10,10), 0, new Vector2(-13,-12));
+		gui1P.Display(universe);
+		BaseObject gui2P = new BaseObject(new Sprite("data\\ImagesTeamC\\2P1.jpg"), new Vector2(0,0), 0, new Vector2(2,-12));
+		gui2P.Display(universe);
+		
+		BaseObject guiHP1base = new BaseObject(new Sprite("data\\ImagesTeamC\\zerohpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(-8.5f,-11.5f));
+		guiHP1base.Display(universe);
+		BaseObject guiHP1full = new BaseObject(new Sprite("data\\ImagesTeamC\\fullhpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(-8.5f,-11.5f));
+		guiHP1full.Display(universe);
+		guiHP1full.GetImage().SetScale(1.0f, 0.5f);
+		
+		BaseObject guiHP2base = new BaseObject(new Sprite("data\\ImagesTeamC\\zerohpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(6.5f,-11.5f));
+		guiHP2base.Display(universe);
+		BaseObject guiHP2full = new BaseObject(new Sprite("data\\ImagesTeamC\\fullhpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(6.5f,-11.5f));
+		guiHP2full.Display(universe);
+		guiHP2full.GetImage().SetScale(1.0f, 0.5f);
+
+		BaseObject guishelter = new BaseObject(new Sprite("data\\ImagesTeamC\\shelter.png",3.0f, 3.0f), new Vector2(0,0), 0, new Vector2(0,1));
+		guishelter.Display(universe);
+		
+		BaseObject guiKnife1 = new BaseObject(new Sprite("data\\ImagesTeamC\\knife.png", 1.0f, 1.3f), new Vector2(0,0), 0, new Vector2(-4.0f,-12));
+		guiKnife1.Display(universe);
+		BaseObject guiKnife2 = new BaseObject(new Sprite("data\\ImagesTeamC\\knife.png", 1.0f, 1.3f), new Vector2(0,0), 0, new Vector2(11,-12));
+		guiKnife2.Display(universe);
+		
+		
+
+		baseObject.add(gui1P);
+		baseObject.add(gui2P);
+		baseObject.add(guiKnife1);
+		baseObject.add(guiKnife2);
+		baseObject.add(guiHP1base);
+		baseObject.add(guiHP1full);
+		baseObject.add(guiHP2base);
+		baseObject.add(guiHP2full);
+		baseObject.add(guishelter);
 
 		generateEnemyManager = new GenerateEnemyManager(universe, this);
 
