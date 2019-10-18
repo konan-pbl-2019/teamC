@@ -21,25 +21,23 @@ import framework.model3D.Universe;
 
 public class ExerciseGame extends SimpleShootingGame {
 	Sprite myShip;
-	private ArrayList<BaseObject>baseObject = new ArrayList<BaseObject>();
-//	private Universe universe2;
 	@Override
 	public void init(Universe universe) {
-		// •½sŒõŒ¹‚ð”z’u‚·‚é
+		// å¹³è¡Œå…‰æºã‚’é…ç½®ã™ã‚‹
         DirectionalLight dirlight = new DirectionalLight(
-        		true,                           //Œõ‚ÌON/OFF
-                new Color3f(1.0f, 1.0f, 1.0f),  //Œõ‚ÌF
-                new Vector3f(0.0f, -1.0f, -0.5f) //Œõ‚Ì•ûŒüƒxƒNƒgƒ‹
+        		true,                           //å…‰ã®ON/OFF
+                new Color3f(1.0f, 1.0f, 1.0f),  //å…‰ã®è‰²
+                new Vector3f(0.0f, -1.0f, -0.5f) //å…‰ã®æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«
         );
         dirlight.setInfluencingBounds(new BoundingSphere(new Point3d(), 10000.0));
         universe.placeLight(dirlight);
 
-		// ŠÂ‹«Œõ‚ð”z’u‚·‚é
+		// ç’°å¢ƒå…‰ã‚’é…ç½®ã™ã‚‹
 		AmbientLight amblight = new AmbientLight(new Color3f(0.5f, 0.5f, 0.5f));
 		amblight.setInfluencingBounds(new BoundingSphere(new Point3d(), 10000.0));
 		universe.placeLight(amblight);
 
-		// ”wŒi‚ðì¬‚·‚é
+		// èƒŒæ™¯ã‚’ä½œæˆã™ã‚‹
 		buildSkyBox(universe);
 
 		myShip = new Sprite("data\\images\\MyShip.gif");
@@ -59,16 +57,10 @@ public class ExerciseGame extends SimpleShootingGame {
 		baseObject.add(gui3);
 
 
-//		universe2 = universe;
-
-		BaseItem baseItem = new BaseItem(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), new Vector2(-5,0));
-		baseItem.Display(universe);
 	}
 
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
-		for(int i=0; i<baseObject.size(); i++) {
-			baseObject.get(i).GetImage().moveLeft(1);
 		}
 	}
 
@@ -81,7 +73,7 @@ public class ExerciseGame extends SimpleShootingGame {
 	}
 
 	/**
-	 * ”wŒi‚ðì¬‚·‚é
+	 * èƒŒæ™¯ã‚’ä½œæˆã™ã‚‹
 	 * @param universe
 	 */
 	private void buildSkyBox(Universe universe) {
