@@ -14,6 +14,7 @@ import com.sun.j3d.utils.image.TextureLoader;
 
 import framework.RWT.RWTFrame3D;
 import framework.RWT.RWTVirtualController;
+import framework.game2D.Position2D;
 import framework.game2D.Sprite;
 import framework.gameMain.SimpleShootingGame;
 import framework.model3D.BackgroundBox;
@@ -21,7 +22,9 @@ import framework.model3D.Universe;
 
 public class ExerciseGame extends SimpleShootingGame {
 	Sprite myShip;
-	ArrayList<BaseObject> objects = new ArrayList<BaseObject>();
+	public ArrayList<BaseObject> objects = new ArrayList<BaseObject>();
+	public ArrayList<BasePeople> enemies = new ArrayList<BasePeople>();
+	GenerateEnemyManager generateEnemyManager;
 
 	@Override
 	public void init(Universe universe) {
@@ -42,23 +45,37 @@ public class ExerciseGame extends SimpleShootingGame {
 		// îwåiÇçÏê¨Ç∑ÇÈ
 		buildSkyBox(universe);
 
-		myShip = new Sprite("data\\images\\MyShip.gif");
-		universe.place(myShip);
-
 		setViewRange(30, 30);
 
-		myShip.setPosition(10, 0);
+		generateEnemyManager = new GenerateEnemyManager(universe, this);
 
-		BaseObject baseObject = new BaseObject(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), 0, new Vector2(-10,0));
-		baseObject.Display(universe);
-		objects.add(baseObject);
+		BasePeople enemy = new Enemy1(new Sprite("data\\imagesTeamC\\knife.png"), new Vector2(1,1), 0, new Vector2(-10,0));
+		enemy.Display(universe);
+		BasePeople enemy2 = new Enemy1(new Sprite("data\\imagesTeamC\\knife.png"), new Vector2(1,1), 0, new Vector2(-10,0));
+		enemy2.Display(universe);
+		enemy2.GetImage().setPosition(new Position2D(-20, -10));
+		BasePeople enemy3 = new Enemy1(new Sprite("data\\imagesTeamC\\knife.png"), new Vector2(1,1), 0, new Vector2(-10,0));
+		enemy3.Display(universe);
+		enemy3.GetImage().setPosition(new Position2D(20, 1));
+		BasePeople enemy4 = new Enemy1(new Sprite("data\\imagesTeamC\\knife.png"), new Vector2(1,1), 0, new Vector2(-10,0));
+		enemy4.Display(universe);
+		enemy4.GetImage().setPosition(new Position2D(20, 10));
+		BasePeople enemy5 = new Enemy1(new Sprite("data\\imagesTeamC\\knife.png"), new Vector2(1,1), 0, new Vector2(-10,0));
+		enemy5.Display(universe);
+		enemy5.GetImage().setPosition(new Position2D(-20, 10));
+		enemies.add(enemy);
+		enemies.add(enemy2);
+		enemies.add(enemy3);
+		enemies.add(enemy4);
+		enemies.add(enemy5);
 	}
 
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
-		for(BaseObject x : objects) {
-			x.GetImage().moveLeft(1);;
+		for(BasePeople enemy : enemies) {
+			enemy.Run();
 		}
+		generateEnemyManager.Run();
 	}
 
 	@Override

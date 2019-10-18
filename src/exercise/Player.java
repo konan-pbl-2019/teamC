@@ -10,7 +10,7 @@ public class Player extends BasePeople {
 	}
 
 	public void Run() {
-		
+
 	}
 
 }

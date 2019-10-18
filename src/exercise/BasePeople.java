@@ -49,6 +49,12 @@ public abstract class BasePeople {
 	public void SetPosition(Vector2 fposition) {
 		position = fposition;
 	}
+	public IController GetController() {
+		return baseController;
+	}
+	public void SetController(IController iController) {
+		baseController = iController;
+	}
 
 	public void Display(Universe universe) {
 		image.setPosition(position.x, position.y);
