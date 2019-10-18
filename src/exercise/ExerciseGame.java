@@ -1,5 +1,7 @@
 package exercise;
 
+import java.util.ArrayList;
+
 import javax.media.j3d.AmbientLight;
 import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.DirectionalLight;
@@ -19,6 +21,7 @@ import framework.model3D.Universe;
 
 public class ExerciseGame extends SimpleShootingGame {
 	Sprite myShip;
+	ArrayList<BaseObject> objects = new ArrayList<BaseObject>();
 
 	@Override
 	public void init(Universe universe) {
@@ -48,11 +51,14 @@ public class ExerciseGame extends SimpleShootingGame {
 
 		BaseObject baseObject = new BaseObject(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), 0, new Vector2(-10,0));
 		baseObject.Display(universe);
+		objects.add(baseObject);
 	}
 
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
-
+		for(BaseObject x : objects) {
+			x.GetImage().moveLeft(1);;
+		}
 	}
 
 	@Override
