@@ -1,5 +1,7 @@
 package exercise;
 
+import java.util.ArrayList;
+
 import javax.media.j3d.AmbientLight;
 import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.DirectionalLight;
@@ -19,7 +21,8 @@ import framework.model3D.Universe;
 
 public class ExerciseGame extends SimpleShootingGame {
 	Sprite myShip;
-
+	private ArrayList<BaseObject>baseObject = new ArrayList<BaseObject>();
+//	private Universe universe2;
 	@Override
 	public void init(Universe universe) {
 		// ïΩçsåıåπÇîzíuÇ∑ÇÈ
@@ -45,14 +48,28 @@ public class ExerciseGame extends SimpleShootingGame {
 		setViewRange(30, 30);
 
 		myShip.setPosition(10, 0);
+		BaseObject gui1 = new BaseObject(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), 0, new Vector2(-10,10));
+		gui1.Display(universe);
+		BaseObject gui2 = new BaseObject(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), 0, new Vector2(-10,0));
+		gui2.Display(universe);
+		BaseObject gui3 = new BaseObject(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), 0, new Vector2(-10,-10));
+		gui3.Display(universe);
+		baseObject.add(gui1);
+		baseObject.add(gui2);
+		baseObject.add(gui3);
 
-		BaseObject baseObject = new BaseObject(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), 0, new Vector2(-10,0));
-		baseObject.Display(universe);
+
+//		universe2 = universe;
+
+		BaseItem baseItem = new BaseItem(new Sprite("data\\images\\MyShip.gif"), new Vector2(1,1), new Vector2(-5,0));
+		baseItem.Display(universe);
 	}
 
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
-
+		for(int i=0; i<baseObject.size(); i++) {
+			baseObject.get(i).GetImage().moveLeft(1);
+		}
 	}
 
 	@Override
