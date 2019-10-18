@@ -21,27 +21,31 @@ import framework.model3D.BackgroundBox;
 import framework.model3D.Universe;
 
 public class ExerciseGame extends SimpleShootingGame {
+	boolean isInit = false;
+	Universe thisUniverse;
 	Sprite myShip;
 	public ArrayList<BaseObject> objects = new ArrayList<BaseObject>();
 	public ArrayList<BasePeople> enemies = new ArrayList<BasePeople>();
+	public ArrayList<BasePeople> players = new ArrayList<BasePeople>();
 	GenerateEnemyManager generateEnemyManager;
 	@Override
 	public void init(Universe universe) {
-		// 平行光源を配置する
+		thisUniverse = universe;
+		// 蟷ｳ陦悟�画ｺ舌ｒ驟咲ｽｮ縺吶ｋ
         DirectionalLight dirlight = new DirectionalLight(
-        		true,                           //光のON/OFF
-                new Color3f(1.0f, 1.0f, 1.0f),  //光の色
-                new Vector3f(0.0f, -1.0f, -0.5f) //光の方向ベクトル
+        		true,                           //蜈峨�ｮON/OFF
+                new Color3f(1.0f, 1.0f, 1.0f),  //蜈峨�ｮ濶ｲ
+                new Vector3f(0.0f, -1.0f, -0.5f) //蜈峨�ｮ譁ｹ蜷代�吶け繝医Ν
         );
         dirlight.setInfluencingBounds(new BoundingSphere(new Point3d(), 10000.0));
         universe.placeLight(dirlight);
 
-		// 環境光を配置する
+		// 迺ｰ蠅�蜈峨ｒ驟咲ｽｮ縺吶ｋ
 		AmbientLight amblight = new AmbientLight(new Color3f(0.5f, 0.5f, 0.5f));
 		amblight.setInfluencingBounds(new BoundingSphere(new Point3d(), 10000.0));
 		universe.placeLight(amblight);
 
-		// 背景を作成する
+		// 閭梧勹繧剃ｽ懈�舌☆繧�
 		buildSkyBox(universe);
 
 		setViewRange(30, 30);
@@ -67,12 +71,28 @@ public class ExerciseGame extends SimpleShootingGame {
 		enemies.add(enemy3);
 		enemies.add(enemy4);
 		enemies.add(enemy5);
+
+
+	}
+
+	private void initForPlayer(RWTVirtualController virtualController) {
+		BasePeople player1 = new Player1(new Sprite("data\\imagesTeamC\\knife.png"), new Vector2(1,1), 0, new Vector2(0,0), virtualController, this);
+		player1.Display(thisUniverse);
+		player1.GetImage().setPosition(new Position2D(0, 0));
+		players.add(player1);
+
+		isInit = true;
 	}
 
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
+		if(isInit == false)initForPlayer(virtualController);
 		for(BasePeople enemy : enemies) {
 			enemy.Run();
+		}
+		for(BasePeople player : players) {
+			player.Run();
+		}
 	}
 
 	@Override
@@ -84,7 +104,7 @@ public class ExerciseGame extends SimpleShootingGame {
 	}
 
 	/**
-	 * 背景を作成する
+	 * 閭梧勹繧剃ｽ懈�舌☆繧�
 	 * @param universe
 	 */
 	private void buildSkyBox(Universe universe) {

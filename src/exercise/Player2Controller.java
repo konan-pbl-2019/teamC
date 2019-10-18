@@ -3,7 +3,13 @@ package exercise;
 import framework.RWT.RWTVirtualController;
 
 public class Player2Controller {
-	public void Run(RWTVirtualController virtualController, BasePeople people) {
+
+	RWTVirtualController virtualController;
+	public Player2Controller(RWTVirtualController fvirtualController) {
+		virtualController = fvirtualController;
+	}
+
+	public void Run(RWTVirtualController virtualController, ExerciseGame exerciseGame) {
 		if (virtualController.isKeyDown(1, RWTVirtualController.RIGHT2)) {
 			System.out.println("RIGHT2");
 		}
