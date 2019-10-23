@@ -7,7 +7,10 @@ public class Player1Controller implements IController{
 	public Player1Controller(RWTVirtualController fvirtualController) {
 		virtualController = fvirtualController;
 	}
-	public void Run(BasePeople people, ExerciseGame exerciseGame) {
+	public void Run(BasePeople people) {
+
+	}
+	public void Run2(BasePeople people, ExerciseGame exerciseGame) {
 		if (virtualController.isKeyDown(0, RWTVirtualController.RIGHT)) {
 			people.GetImage().moveRight(3);
 			System.out.println("RIGHT");

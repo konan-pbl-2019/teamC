@@ -354,26 +354,29 @@ public class Sprite implements Movable {
 	public boolean checkCollision(Movable other) {
 		if (other instanceof Sprite) {
 			Sprite otherSprite = (Sprite)other;
-			double thisMinX = getPosition().getX();
-			double thisMaxX = getPosition().getX() + 2.0 * (double)scaleX;
-			double thisMinY = getPosition().getY();
-			double thisMaxY = getPosition().getY() + 2.0 * (double)scaleY;
-			double otherMinX = otherSprite.getPosition().getX();
-			double otherMaxX = otherSprite.getPosition().getX() + 2.0 * (double)(otherSprite.scaleX);
-			double otherMinY = otherSprite.getPosition().getY();
-			double otherMaxY = otherSprite.getPosition().getY() + 2.0 * (double)(otherSprite.scaleY);
+			double scaleY2 = scaleY / 1.5f;
+			if(scaleY == 1)scaleY2 = 1;
+			double scaleY3 = otherSprite.scaleY;
+			if(otherSprite.scaleY == 1)scaleY3 = 1;
+			double thisMinX = getPosition().getX() - (double)scaleX;
+			double thisMaxX = getPosition().getX() + (double)scaleX;
+			double thisMinY = getPosition().getY() - (double)scaleY2;
+			double thisMaxY = getPosition().getY() + (double)scaleY2;
+			double otherMinX = otherSprite.getPosition().getX() - (double)(otherSprite.scaleX);
+			double otherMaxX = otherSprite.getPosition().getX() + (double)(otherSprite.scaleX);
+			double otherMinY = otherSprite.getPosition().getY() - (double)(scaleY3);
+			double otherMaxY = otherSprite.getPosition().getY() + (double)(scaleY3);
+
 			if((otherMinX <= thisMinX && otherMaxX >= thisMaxX)
 					|| (otherMinX >= thisMinX && otherMaxX <= thisMaxX)){
-				if(otherMaxY > thisMinY && otherMaxY < thisMaxY){
-					return true;
-				} else if(otherMinY < thisMaxY && otherMinY > thisMinY){
+				if(thisMinY <= otherMaxX && otherMinX <= thisMaxY) {
 					return true;
 				}
 			} else if((otherMinY <= thisMinY && otherMaxY >= thisMaxY)
 				|| (otherMinY >= thisMinY && otherMaxY <= thisMaxY)){
-				if(otherMaxX > thisMinX && otherMaxX < thisMaxX){
+				if(otherMaxX >= thisMinX && otherMaxX <= thisMaxX){
 					return true;
-				} else if(otherMinX < thisMaxX && otherMinX > thisMaxX){
+				} else if(otherMinX <= thisMaxX && otherMinX >= thisMaxX){
 					return true;
 				}
 			} else if (otherMinX > thisMinX && otherMinX < thisMaxX && otherMaxY > thisMinY && otherMaxY < thisMaxY) {

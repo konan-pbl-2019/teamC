@@ -1,6 +1,7 @@
 package exercise;
 
 import java.util.ArrayList;
+
 import framework.game2D.Sprite;
 
 public class Player extends BasePeople {
@@ -10,8 +11,7 @@ public class Player extends BasePeople {
 	}
 
 	public void Run() {
-		super.peopleDamaged.Run(this, new ArrayList<BasePeople>() {}, new ArrayList<BaseObject>() {});
-
+		super.GetPeopleDamaged().Run(this, new ArrayList<BasePeople>() {}, new ArrayList<BaseObject>() {});
 	}
 
 }
