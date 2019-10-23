@@ -12,7 +12,7 @@ public abstract class BasePeople {
 	private IController baseController;
 	//private IAct iact;
 	private ActorParameter actorParameter;
-	private PeopleDamaged peopleDamaged;
+	protected PeopleDamaged peopleDamaged;
 
 	public BasePeople(Sprite fimage, Vector2 fsize, float fradian, Vector2 fposition) {
 		image = fimage;

@@ -24,7 +24,12 @@ public class Sprite implements Movable {
 	Box box = null;
 	private TransformGroup transformGroup;
 	private double collisionRadius;
-	private float scale = 1.0f;
+//	private float scale = 1.0f;
+	public float originScaleX = 1.0f;
+	public float originScaleY = 1.0f;
+	public float scaleX = 1.0f;
+	public float scaleY = 1.0f;
+	private Appearance appearance;
 
 	// ìoèÍï®ÇÃîzíuà íu
 	private Position2D position = new Position2D();
@@ -35,6 +40,24 @@ public class Sprite implements Movable {
 	// ìoèÍï®ÇÃë¨ìx
 	private Velocity2D velocity = new Velocity2D();
 
+	// /////////////////////////////////////////////////
+	//
+	// teamC ADD
+	//
+	// /////////////////////////////////////////////////
+
+	public void SetScale(float scaleX, float scaleY) {
+		this.scaleX = scaleX;
+		this.scaleY = scaleY;
+
+		transformGroup.removeChild(box);
+		Position2D point = getPosition();
+		box = new Box(1.0f * scaleX, 1.0f * scaleY, 0.0f, Box.GENERATE_TEXTURE_COORDS | Box.GENERATE_NORMALS, appearance);
+		transformGroup.addChild(box);
+
+		moveLeft((originScaleX - scaleX)*100);
+		moveUp((originScaleY - scaleY)*100);
+	}
 
 	// /////////////////////////////////////////////////
 	//
@@ -47,13 +70,22 @@ public class Sprite implements Movable {
 	}
 
 	public Sprite(String imageFile, float scale) {
-		this(imageFile, scale, 0.0);
+		this(imageFile, scale, scale, 0.0);
 	}
 
-	public Sprite(String imageFile, float scale, double depth) {
-		this.scale = scale;
+	public Sprite(String imageFile, float scaleX, float scaleY) {
+		this(imageFile, scaleX, scaleY, 0.0);
+	}
+
+	public Sprite(String imageFile, float scaleX, float scaleY, double depth) {
+//		this.scale = scale;
+		this.scaleX = scaleX;
+		this.scaleY = scaleY;
+		this.originScaleX = scaleX;
+		this.originScaleY = scaleY;
 		transformGroup = new TransformGroup();
-		Appearance appearance = new Appearance();
+//		Appearance appearance = new Appearance();
+		appearance = new Appearance();
 
 		if (imageFile != null){
 			TextureLoader loader = new TextureLoader(imageFile, TextureLoader.BY_REFERENCE, null);
@@ -90,7 +122,7 @@ public class Sprite implements Movable {
 		transAttributes.setDstBlendFunction(TransparencyAttributes.BLEND_SRC_ALPHA);
 		appearance.setTransparencyAttributes(transAttributes);
 
-		box = new Box(1.0f * scale, 1.0f * scale, 0.0f, Box.GENERATE_TEXTURE_COORDS | Box.GENERATE_NORMALS, appearance);
+		box = new Box(1.0f * scaleX, 1.0f * scaleY, 0.0f, Box.GENERATE_TEXTURE_COORDS | Box.GENERATE_NORMALS, appearance);
 		transformGroup.addChild(box);
 		transformGroup.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
 		transformGroup.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
@@ -323,13 +355,13 @@ public class Sprite implements Movable {
 		if (other instanceof Sprite) {
 			Sprite otherSprite = (Sprite)other;
 			double thisMinX = getPosition().getX();
-			double thisMaxX = getPosition().getX() + 2.0 * (double)scale;
+			double thisMaxX = getPosition().getX() + 2.0 * (double)scaleX;
 			double thisMinY = getPosition().getY();
-			double thisMaxY = getPosition().getY() + 2.0 * (double)scale;
+			double thisMaxY = getPosition().getY() + 2.0 * (double)scaleY;
 			double otherMinX = otherSprite.getPosition().getX();
-			double otherMaxX = otherSprite.getPosition().getX() + 2.0 * (double)scale;
+			double otherMaxX = otherSprite.getPosition().getX() + 2.0 * (double)(otherSprite.scaleX);
 			double otherMinY = otherSprite.getPosition().getY();
-			double otherMaxY = otherSprite.getPosition().getY() + 2.0 * (double)scale;
+			double otherMaxY = otherSprite.getPosition().getY() + 2.0 * (double)(otherSprite.scaleY);
 			if((otherMinX <= thisMinX && otherMaxX >= thisMaxX)
 					|| (otherMinX >= thisMinX && otherMaxX <= thisMaxX)){
 				if(otherMaxY > thisMinY && otherMaxY < thisMaxY){
