@@ -12,7 +12,7 @@ public abstract class BasePeople {
 	private IController baseController;
 	//private IAct iact;
 	private ActorParameter actorParameter;
-	public PeopleDamaged peopleDamaged;
+	protected PeopleDamaged peopleDamaged;
 
 	public BasePeople(Sprite fimage, Vector2 fsize, float fradian, Vector2 fposition) {
 		image = fimage;
@@ -20,7 +20,7 @@ public abstract class BasePeople {
 		radian = fradian;
 		position = fposition;
 
-		actorParameter = new ActorParameter(10,10,10,10,10);
+		actorParameter = new ActorParameter(50,50,10,10,10);
 		peopleDamaged = new PeopleDamaged();
 	}
 
@@ -68,6 +68,13 @@ public abstract class BasePeople {
 	public void SetParameter(ActorParameter factorParameter) {
 		actorParameter = factorParameter;
 	}
+	public PeopleDamaged GetPeopleDamaged() {
+		return peopleDamaged;
+	}
+	public void SetPeopleDamaged(PeopleDamaged fpeopleDamaged) {
+		peopleDamaged = fpeopleDamaged;
+	}
+
 
 	public abstract void Run();
 }

@@ -21,7 +21,7 @@ public class GenerateEnemyManager {
 	Universe universe;
 	ExerciseGame exerciseGame;
 	Timer timer = new Timer();
-//
+	//randomx.nextInt(-20);
 	public GenerateEnemyManager(Universe funiverse, ExerciseGame fexerciseGame) {
 		universe = funiverse;
 		exerciseGame = fexerciseGame;

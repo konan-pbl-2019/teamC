@@ -2,7 +2,7 @@ package exercise;
 
 public class EnemyController implements IController {
 	Vector2 center = new Vector2(0, 0);
-	public void Run(BasePeople people) {
+	public void Run(BasePeople people, ExerciseGame exerciseGame) {
 		if(people.GetImage().getPosition().getY() > center.y) {
 			if(people.GetImage().getPosition().getX() < center.x) {
 				people.GetImage().moveRight(1);

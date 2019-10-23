@@ -11,7 +11,7 @@ public class Enemy1 extends BasePeople {
 	}
 
 	public void Run() {
-		super.GetController().Run(this);
+		//super.GetController().Run(this, ExerciseGame exerciseGame);
 	}
 
 }
