@@ -40,6 +40,8 @@ public class Sprite implements Movable {
 	// 登場物の速度
 	private Velocity2D velocity = new Velocity2D();
 
+	private float radian = 0;
+
 	// /////////////////////////////////////////////////
 	//
 	// teamC ADD
@@ -233,6 +235,59 @@ public class Sprite implements Movable {
 	}
 
 
+
+	// /////////////////////////////////////////
+	//
+	// Spriteの回転メソッド(add)
+	//
+	// ////////////////////////////////////////
+
+	public float getRadian() {
+		return radian;
+	}
+
+	public void setRadian(float radian) {
+		this.radian = radian;
+	}
+
+	//スプライトを回転(BoxのTransformGroupを変更する)
+	public void TurnRight() {
+		//Transform3Dを生成
+		Transform3D transform = new Transform3D();
+		Transform3D transform2 = new Transform3D();
+
+	    //Transform3Dに、Y軸を回転軸として45度（π/4ラジアン）の回転を登録
+		transform.set(new Vector3d(getPosition().getX(), getPosition().getY(), 0));
+		radian += -Math.PI/60;
+
+	    transform2.rotZ(radian);
+
+	    //合成
+	    transform.mul(transform2);
+
+	    //TransformGroupにTransform3Dを登録。
+	    getTransformGroupToPlace().setTransform(transform);
+	}
+
+	public void TurnLeft() {
+		//Transform3Dを生成
+		Transform3D transform = new Transform3D();
+		Transform3D transform2 = new Transform3D();
+
+	    //Transform3Dに、Y軸を回転軸として45度（π/4ラジアン）の回転を登録
+		transform.set(new Vector3d(getPosition().getX(), getPosition().getY(), 0));
+		radian += Math.PI/60;
+
+	    transform2.rotZ(radian);
+
+	    //合成
+	    transform.mul(transform2);
+
+	    //TransformGroupにTransform3Dを登録。
+	    getTransformGroupToPlace().setTransform(transform);
+	}
+
+
 	// //////////////////////////////
 	//
 	// プレイヤーを左方向に動かすメソッド
@@ -303,6 +358,18 @@ public class Sprite implements Movable {
 
 	// //////////////////////////////
 	//
+	// (private) 移動と回転を合成する関数
+	//
+	// //////////////////////////////
+
+	private void MulMoveRadian(Transform3D move, Transform3D radian) {
+		if(move == 0) {
+			move.set( Vector3d(getPosition().getX(), getPosition().getY(), 0));
+		}
+	}
+
+	// //////////////////////////////
+	//
 	// 衝突判定関連のメソッド
 	//
 	// //////////////////////////////
@@ -367,16 +434,14 @@ public class Sprite implements Movable {
 			double otherMinY = otherSprite.getPosition().getY() - (double)(scaleY3);
 			double otherMaxY = otherSprite.getPosition().getY() + (double)(scaleY3);
 
-			if((otherMinX <= thisMinX && otherMaxX >= thisMaxX)
-					|| (otherMinX >= thisMinX && otherMaxX <= thisMaxX)){
-				if(thisMinY <= otherMaxX && otherMinX <= thisMaxY) {
+			if((otherMinX <= thisMaxX && otherMinX >= thisMinX)
+					|| (otherMaxX >= thisMinX && otherMaxX <= thisMaxX)){
+				if(thisMinY <= otherMaxY && otherMinY <= thisMaxY) {
 					return true;
 				}
-			} else if((otherMinY <= thisMinY && otherMaxY >= thisMaxY)
-				|| (otherMinY >= thisMinY && otherMaxY <= thisMaxY)){
-				if(otherMaxX >= thisMinX && otherMaxX <= thisMaxX){
-					return true;
-				} else if(otherMinX <= thisMaxX && otherMinX >= thisMaxX){
+			} else if((otherMaxY >= thisMinY && otherMaxY <= thisMaxY)
+				|| (otherMinY <= thisMaxY && otherMinY >= thisMinY)){
+				if(thisMinX <= otherMaxX && otherMinX <= thisMaxX) {
 					return true;
 				}
 			} else if (otherMinX > thisMinX && otherMinX < thisMaxX && otherMaxY > thisMinY && otherMaxY < thisMaxY) {
