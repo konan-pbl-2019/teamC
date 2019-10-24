@@ -13,31 +13,32 @@ public class Player1Controller implements IController{
 	public void Run2(BasePeople people, ExerciseGame exerciseGame) {
 		if (virtualController.isKeyDown(0, RWTVirtualController.RIGHT)) {
 			people.GetImage().moveRight(3);
-			System.out.println("RIGHT");
 		}
 		if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
 			people.GetImage().moveLeft(3);
-			System.out.println("LEFT");
 		}
 		if (virtualController.isKeyDown(0, RWTVirtualController.UP)) {
 			people.GetImage().moveUp(3);
-			System.out.println("UP");
 		}
 		if (virtualController.isKeyDown(0, RWTVirtualController.DOWN)) {
 			people.GetImage().moveDown(3);
-			System.out.println("DOWN");
 		}
 		if (virtualController.isKeyDown(0, RWTVirtualController.TURN_RIGHT)) {
 			//people.GetImage().getTransformGroupToPlace().set
-			people.GetImage().setCollisionRadius(10);
+			people.TurnRight();
 			System.out.println("TURN_RIGHT");
 		}
 		if (virtualController.isKeyDown(0, RWTVirtualController.TURN_LEFT)) {
+			people.TurnLeft();
 			System.out.println("TURN_LEFT");
 		}
 		if (virtualController.isKeyDown(0, RWTVirtualController.ATTACK_WEAPON)) {
+			people.Attack(exerciseGame);
 			System.out.println("ATTACK_WEAPON");
-
+		}
+		else {
+			people.GetTimer().Reset();
+			people.GetTimer().SetTimeOut(0);
 		}
 		if (virtualController.isKeyDown(0, RWTVirtualController.USE_ITEM)) {
 			System.out.println("USE_ITEM");

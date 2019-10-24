@@ -2,15 +2,18 @@ package exercise;
 
 import framework.RWT.RWTVirtualController;
 
-public class Player2Controller {
-
+public class Player2Controller implements IController{
 	RWTVirtualController virtualController;
 	public Player2Controller(RWTVirtualController fvirtualController) {
 		virtualController = fvirtualController;
 	}
+	public void Run(BasePeople people) {
 
-	public void Run(RWTVirtualController virtualController, ExerciseGame exerciseGame) {
+	}
+
+	public void Run2(BasePeople people, ExerciseGame exerciseGame) {
 		if (virtualController.isKeyDown(1, RWTVirtualController.RIGHT2)) {
+			people.GetImage().moveRight(3);
 			System.out.println("RIGHT2");
 		}
 		if (virtualController.isKeyDown(1, RWTVirtualController.LEFT2)) {
