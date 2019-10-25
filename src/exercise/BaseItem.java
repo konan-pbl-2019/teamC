@@ -14,6 +14,7 @@ public class BaseItem {
 		position = fposition;
 	}
 
+
 	public Sprite GetImage() {
 		return image;
 	}
