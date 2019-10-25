@@ -114,19 +114,19 @@ public class ExerciseGame extends SimpleShootingGame {
 
 		generateEnemyManager = new GenerateEnemyManager(universe, this);
 
-		BasePeople enemy = new Enemy1(new Sprite("data\\imagesTeamC\\knife.jpg", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(-10,0), this);
+		BasePeople enemy = new Enemy1(new Sprite("data\\imagesTeamC\\franken.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(-10,0), this);
 		enemy.Display(universe);
 		enemy.GetImage().setPosition(new Position2D(-10, 0.1f));
-		BasePeople enemy2 = new Enemy1(new Sprite("data\\imagesTeamC\\knife.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(-10,0), this);
+		BasePeople enemy2 = new Enemy1(new Sprite("data\\imagesTeamC\\franken.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(-10,0), this);
 		enemy2.Display(universe);
 		enemy2.GetImage().setPosition(new Position2D(-20, -10));
-		BasePeople enemy3 = new Enemy1(new Sprite("data\\imagesTeamC\\knife.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(-10,0), this);
+		BasePeople enemy3 = new Enemy1(new Sprite("data\\imagesTeamC\\franken.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(-10,0), this);
 		enemy3.Display(universe);
 		enemy3.GetImage().setPosition(new Position2D(20, 1));
-		BasePeople enemy4 = new Enemy1(new Sprite("data\\imagesTeamC\\knife.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(-10,0), this);
+		BasePeople enemy4 = new Enemy1(new Sprite("data\\imagesTeamC\\franken.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(-10,0), this);
 		enemy4.Display(universe);
 		enemy4.GetImage().setPosition(new Position2D(20, 10));
-		BasePeople enemy5 = new Enemy1(new Sprite("data\\imagesTeamC\\knife.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(-10,0), this);
+		BasePeople enemy5 = new Enemy1(new Sprite("data\\imagesTeamC\\franken.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(-10,0), this);
 		enemy5.Display(universe);
 		enemy5.GetImage().setPosition(new Position2D(-20, 10));
 		enemies.add(enemy);
@@ -141,13 +141,13 @@ public class ExerciseGame extends SimpleShootingGame {
 	}
 
 	private void initForPlayer(RWTVirtualController virtualController) {
-		player1 = new Player1(new Sprite("data\\imagesTeamC\\knife.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(0,0), virtualController, this);
+		player1 = new Player1(new Sprite("data\\imagesTeamC\\player.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(0,0), virtualController, this);
 		player1.Display(thisUniverse);
 		player1.GetImage().setPosition(new Position2D(0, 0));
 		players.add(player1);
 
 
-		player2 = new Player2(new Sprite("data\\imagesTeamC\\knife.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(0,0), virtualController, this);
+		player2 = new Player2(new Sprite("data\\imagesTeamC\\player.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(0,0), virtualController, this);
 		player2.Display(thisUniverse);
 		player2.GetImage().setPosition(new Position2D(0, 0));
 		players.add(player2);
