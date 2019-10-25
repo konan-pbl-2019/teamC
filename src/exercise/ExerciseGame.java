@@ -14,6 +14,8 @@ import com.sun.j3d.utils.image.TextureLoader;
 
 import framework.RWT.RWTFrame3D;
 import framework.RWT.RWTVirtualController;
+import framework.audio.BGM3D;
+import framework.audio.Sound3D;
 import framework.game2D.Position2D;
 import framework.game2D.Sprite;
 import framework.gameMain.SimpleShootingGame;
@@ -24,6 +26,10 @@ public class ExerciseGame extends SimpleShootingGame {
 	boolean isInit = false;
 	Universe thisUniverse;
 	Sprite myShip;
+	private Sound3D BGM1 = BGM3D.registerBGM("data\\pocha\\attack.wav");
+	Sound3D sound1 = new Sound3D("data\\pocha\\attack.wav");
+	Sound3D sound2 = new Sound3D("data\\pocha\\attack.wav");
+	Sound3D sound3 = new Sound3D("data\\pocha\\attack.wav");
 	private ArrayList<BaseObject>baseObject = new ArrayList<BaseObject>();
 //	private Universe universe2;
 	public ArrayList<BaseObject> objects = new ArrayList<BaseObject>();
@@ -32,6 +38,13 @@ public class ExerciseGame extends SimpleShootingGame {
 	public ArrayList<BaseObject> Knifes = new ArrayList<BaseObject>();
 	public BasePeople shelter;
 	GenerateEnemyManager generateEnemyManager;
+
+	//ui
+	BaseObject guiHP1full;
+	BaseObject guiHP2full;
+
+	BasePeople player1;
+	BasePeople player2;
 	@Override
 	public void init(Universe universe) {
 		thisUniverse = universe;
@@ -48,14 +61,20 @@ public class ExerciseGame extends SimpleShootingGame {
 		AmbientLight amblight = new AmbientLight(new Color3f(0.5f, 0.5f, 0.5f));
 		amblight.setInfluencingBounds(new BoundingSphere(new Point3d(), 10000.0));
 		universe.placeLight(amblight);
-		//buildSkyBox(universe);
+		buildSkyBox(universe);
 
 		setViewRange(30, 30);
-//		BaseObject guibar = new BaseObject(new Sprite("data\\ImagesTeamC\\knifeinv.png",20.0f,4.0f, -10), new Vector2(0,0), 0, new Vector2(0,-13));
-//		guibar.Display(universe);
+		
+		//---------------sound------------------
+		BGM3D.playBGM(BGM1);
+		sound1.play();
+		sound2.play();
+		sound3.play();
 
 		// ---------------ui------------------
-
+		BaseObject guibar = new BaseObject(new Sprite("data\\ImagesTeamC\\statusbase.png",20.0f,4.0f,1), new Vector2(0,0), 0, new Vector2(0,-13));
+		guibar.Display(universe);
+		
 		BaseObject gui1P = new BaseObject(new Sprite("data\\ImagesTeamC\\1P.jpg"), new Vector2(10,10), 0, new Vector2(-13,-12));
 		gui1P.Display(universe);
 		BaseObject gui2P = new BaseObject(new Sprite("data\\ImagesTeamC\\2P1.jpg"), new Vector2(0,0), 0, new Vector2(2,-12));
@@ -63,15 +82,15 @@ public class ExerciseGame extends SimpleShootingGame {
 
 		BaseObject guiHP1base = new BaseObject(new Sprite("data\\ImagesTeamC\\zerohpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(-8.5f,-11.5f));
 		guiHP1base.Display(universe);
-		BaseObject guiHP1full = new BaseObject(new Sprite("data\\ImagesTeamC\\fullhpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(-8.5f,-11.5f));
+		guiHP1full = new BaseObject(new Sprite("data\\ImagesTeamC\\fullhpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(-8.5f,-11.5f));
 		guiHP1full.Display(universe);
-		guiHP1full.GetImage().SetScale(1.0f, 0.5f);
+		guiHP1full.GetImage().SetScale(3.0f, 0.5f);
 
 		BaseObject guiHP2base = new BaseObject(new Sprite("data\\ImagesTeamC\\zerohpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(6.5f,-11.5f));
 		guiHP2base.Display(universe);
-		BaseObject guiHP2full = new BaseObject(new Sprite("data\\ImagesTeamC\\fullhpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(6.5f,-11.5f));
+		guiHP2full = new BaseObject(new Sprite("data\\ImagesTeamC\\fullhpgage.png", 3.0f, 0.5f), new Vector2(0,0), 0, new Vector2(6.5f,-11.5f));
 		guiHP2full.Display(universe);
-		guiHP2full.GetImage().SetScale(1.0f, 0.5f);
+		guiHP2full.GetImage().SetScale(3.0f, 0.5f);
 
 		BaseObject guiKnife1 = new BaseObject(new Sprite("data\\ImagesTeamC\\knifeinv.png", 1.0f, 1.3f), new Vector2(0,0), 0, new Vector2(-4.0f,-12));
 		guiKnife1.Display(universe);
@@ -81,7 +100,7 @@ public class ExerciseGame extends SimpleShootingGame {
 
 
 
-		//baseObject.add(guibar);
+		baseObject.add(guibar);
 		baseObject.add(gui1P);
 		baseObject.add(gui2P);
 		baseObject.add(guiKnife1);
@@ -122,13 +141,13 @@ public class ExerciseGame extends SimpleShootingGame {
 	}
 
 	private void initForPlayer(RWTVirtualController virtualController) {
-		BasePeople player1 = new Player1(new Sprite("data\\imagesTeamC\\knife.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(0,0), virtualController, this);
+		player1 = new Player1(new Sprite("data\\imagesTeamC\\knife.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(0,0), virtualController, this);
 		player1.Display(thisUniverse);
 		player1.GetImage().setPosition(new Position2D(0, 0));
 		players.add(player1);
 
 
-		BasePeople player2 = new Player2(new Sprite("data\\imagesTeamC\\knife.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(0,0), virtualController, this);
+		player2 = new Player2(new Sprite("data\\imagesTeamC\\knife.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(0,0), virtualController, this);
 		player2.Display(thisUniverse);
 		player2.GetImage().setPosition(new Position2D(0, 0));
 		players.add(player2);
@@ -160,6 +179,8 @@ public class ExerciseGame extends SimpleShootingGame {
 				Knifes.remove(i);
 			}
 		}
+		guiHP1full.Run(player1, this);
+		guiHP2full.Run(player2, this);
 
 		shelter.Run();
 	}
@@ -177,27 +198,27 @@ public class ExerciseGame extends SimpleShootingGame {
 	 * @param universe
 	 */
 	private void buildSkyBox(Universe universe) {
-		TextureLoader loaderTop = new TextureLoader("data\\texture\\top.jpg",
+		TextureLoader loaderTop = new TextureLoader("data\\imagesTeamC\\nightforest.jpg",
 				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP,
 				null);
 		Texture textureTop = loaderTop.getTexture();
-		TextureLoader loaderBottom = new TextureLoader("data\\texture\\bottom.jpg",
+		TextureLoader loaderBottom = new TextureLoader("data\\imagesTeamC\\nightforest.jpg",
 				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP,
 				null);
 		Texture textureBottom = loaderBottom.getTexture();
-		TextureLoader loaderNorth = new TextureLoader("data\\texture\\north.jpg",
+		TextureLoader loaderNorth = new TextureLoader("data\\imagesTeamC\\nightforest.jpg",
 				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP,
 				null);
 		Texture textureNorth = loaderNorth.getTexture();
-		TextureLoader loaderSouth = new TextureLoader("data\\texture\\south.jpg",
+		TextureLoader loaderSouth = new TextureLoader("data\\imagesTeamC\\nightforest.jpg",
 				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP,
 				null);
 		Texture textureSouth = loaderSouth.getTexture();
-		TextureLoader loaderWest = new TextureLoader("data\\texture\\west.jpg",
+		TextureLoader loaderWest = new TextureLoader("data\\imagesTeamC\\nightforest.jpg",
 				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP,
 				null);
 		Texture textureWest = loaderWest.getTexture();
-		TextureLoader loaderEast = new TextureLoader("data\\texture\\east.jpg",
+		TextureLoader loaderEast = new TextureLoader("data\\imagesTeamC\\nightforest.jpg",
 				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP,
 				null);
 		Texture textureEast = loaderEast.getTexture();
