@@ -3,6 +3,7 @@ package exercise;
 import javax.media.j3d.Transform3D;
 import javax.vecmath.Vector3d;
 
+import framework.audio.Sound3D;
 import framework.game2D.Position2D;
 import framework.game2D.Sprite;
 import framework.model3D.Universe;
@@ -91,7 +92,9 @@ public abstract class BasePeople {
 
 	//“ÁŽê‹@”\
 	public void Attack(ExerciseGame exerciseGame) {
+		Sound3D attack_knife = new Sound3D("data\\ImagesTeamC\\knifesound.wav");
 		if(timer.IsTimeOver()) {
+			attack_knife.play();
 			BaseObject knife = new Knife1(new Sprite("data\\imagesTeamC\\knife.gif", 0.66f, 1f), new Vector2(1,1), 0, new Vector2(0,0), exerciseGame);
 			knife.Display(exerciseGame.thisUniverse);
 			exerciseGame.Knifes.add(knife);
