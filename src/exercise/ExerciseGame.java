@@ -159,11 +159,25 @@ public class ExerciseGame extends SimpleShootingGame {
 	public void progress(RWTVirtualController virtualController, long interval) {
 		if(isInit == false)initForPlayer(virtualController);
 		generateEnemyManager.Run();
-		for(BasePeople enemy : enemies) {
-			enemy.Run();
+		for(int i=0; i<enemies.size(); i++) {
+			enemies.get(i).Run();
+			if(enemies.get(i).GetParameter().GetHp() == 0) {
+				thisUniverse.displace(enemies.get(i).GetImage());
+				enemies.remove(i);
+			}
 		}
-		for(BasePeople player : players) {
-			player.Run();
+		for(int i=0; i<players.size(); i++) {
+			players.get(i).Run();
+			if(players.get(i).GetParameter().GetHp() == 0) {
+				thisUniverse.displace(players.get(i).GetImage());
+				players.remove(i);
+			}
+		}
+		for(int i=0; i<Knifes.size(); i++) {
+			Knifes.get(i).Run();
+			if(Knifes.get(i).GetParameter().GetHp() == 0) {
+				Knifes.remove(i);
+			}
 		}
 		guiHP1full.Run(player1, this);
 		guiHP2full.Run(player2, this);

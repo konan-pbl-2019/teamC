@@ -15,7 +15,7 @@ import com.sun.j3d.utils.image.TextureLoader;
 import framework.model3D.BaseObject3D;
 
  /**
-  * 2ŸŒ³‚Ì“oê•¨‚ÌƒNƒ‰ƒX
+  * 2æ¬¡å…ƒã®ç™»å ´ç‰©ã®ã‚¯ãƒ©ã‚¹
  *
   * @author T.Kuno
   *
@@ -31,13 +31,13 @@ import framework.model3D.BaseObject3D;
          public float scaleY = 1.0f;
          private Appearance appearance;
 
-         // “oê•¨‚Ì”z’uˆÊ’u
+         // ç™»å ´ç‰©ã®é…ç½®ä½ç½®
         private Position2D position = new Position2D();
 
-         // “oê•¨‚Ì”z’uˆÊ’u‚Ì‰œs
+         // ç™»å ´ç‰©ã®é…ç½®ä½ç½®ã®å¥¥è¡Œ
         private double depth = 0.0;
 
-         // “oê•¨‚Ì‘¬“x
+         // ç™»å ´ç‰©ã®é€Ÿåº¦
         private Velocity2D velocity = new Velocity2D();
 
          private float radian = 0;
@@ -63,7 +63,7 @@ import framework.model3D.BaseObject3D;
 
          // /////////////////////////////////////////////////
          //
-         // ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+         // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
         //
          // /////////////////////////////////////////////////
 
@@ -137,12 +137,12 @@ import framework.model3D.BaseObject3D;
 
          // /////////////////////////////////////////////////
          //
-         // Sprite‚ÌPosition‚ÉŠÖ‚·‚éƒƒ\ƒbƒh
+         // Spriteã®Positionã«é–¢ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
         //
          // /////////////////////////////////////////////////
 
          /**
-          * ƒXƒvƒ‰ƒCƒg‚ÌˆÊ’u‚ğİ’è‚·‚éB
+          * ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ä½ç½®ã‚’è¨­å®šã™ã‚‹ã€‚
          *
           * @param x
           * @param y
@@ -155,23 +155,15 @@ import framework.model3D.BaseObject3D;
          }
 
          /**
-          * ƒXƒvƒ‰ƒCƒg‚ÌˆÊ’u‚ğİ’è‚·‚éB
+          * ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ä½ç½®ã‚’è¨­å®šã™ã‚‹ã€‚
          *
           * @param x
           * @param y
           */
          public void setPosition(double x, double y, double z) {
-                 depth = z;
-                 position.set(x, y);
-                 Transform3D t3d = new Transform3D();
-                 t3d.setTranslation(new Vector3d(x, y, z));
-                 Transform3D radian2 = new Transform3D();
-                 radian2.rotZ(this.radian);
-                 radian2.mul(t3d);
-                 transformGroup.setTransform(t3d);
          }
 
-         // ƒCƒ“ƒ^[ƒtƒF[ƒX‚ÌÀ‘•
+         // ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®å®Ÿè£…
         @Override
          public Position2D getPosition() {
                  return this.position;
@@ -185,11 +177,11 @@ import framework.model3D.BaseObject3D;
 
          // //////////////////////////////////////////////////////
          //
-         // Sprite‚ÌVelocity‚ÉŠÖ‚·‚éƒƒ\ƒbƒh
+         // Spriteã®Velocityã«é–¢ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
         //
          // //////////////////////////////////////////////////////
          /**
-          * ƒXƒvƒ‰ƒCƒg‚Ì‘¬“x‚ğİ’è‚·‚éB
+          * ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®é€Ÿåº¦ã‚’è¨­å®šã™ã‚‹ã€‚
          *
           * @param x
           * @param y
@@ -198,7 +190,7 @@ import framework.model3D.BaseObject3D;
                  velocity.set(x, y);
          }
 
-         // ƒCƒ“ƒ^[ƒtƒF[ƒX‚ÌÀ‘•
+         // ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®å®Ÿè£…
         @Override
          public void setVelocity(Velocity2D vel) {
                  setVelocity(vel.getX(), vel.getY());
@@ -211,11 +203,11 @@ import framework.model3D.BaseObject3D;
 
          // /////////////////////////////////////////
          //
-         // Sprite‚Ìmotionƒƒ\ƒbƒh
+         // Spriteã®motionãƒ¡ã‚½ãƒƒãƒ‰
         //
          // ////////////////////////////////////////
 
-         // ƒCƒ“ƒ^[ƒtƒF[ƒX‚ÌÀ‘•
+         // ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®å®Ÿè£…
         @Override
          public void motion(long interval) {
                  double frame = (double)interval / 1000.0;
@@ -223,17 +215,17 @@ import framework.model3D.BaseObject3D;
          }
 
          /**
-          * ƒIƒuƒWƒFƒNƒg‚Æ‚ÌÕ“Ë”»’è‚ğ‚µA‚»‚ÌŒ‹‰Ê‚É‰‚¶‚Ä•¨‘Ì‚ğ“®‚©‚·
+          * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨ã®è¡çªåˆ¤å®šã‚’ã—ã€ãã®çµæœã«å¿œã˜ã¦ç‰©ä½“ã‚’å‹•ã‹ã™
          *
           * @param interval
           * @param mazeGround
-          *            --- –À˜HƒQ[ƒ€‚ÌƒXƒe[ƒW
+          *            --- è¿·è·¯ã‚²ãƒ¼ãƒ ã®ã‚¹ãƒ†ãƒ¼ã‚¸
          */
          public void motion(long interval, Map2D mazeGround) {
-                 // Õ“Ë”»’è‚·‚é‘O‚Éˆê“xƒXƒvƒ‰ƒCƒg‚ÌˆÊ’u‚ğ“®‚©‚·
+                 // è¡çªåˆ¤å®šã™ã‚‹å‰ã«ä¸€åº¦ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ä½ç½®ã‚’å‹•ã‹ã™
                 motion(interval);
 
-                 // Õ“Ë”»’è‚¨‚æ‚ÑÕ“Ë‰“š
+                 // è¡çªåˆ¤å®šãŠã‚ˆã³è¡çªå¿œç­”
                 mazeGround.collisionResponse(this);
          }
 
@@ -241,7 +233,7 @@ import framework.model3D.BaseObject3D;
 
          // /////////////////////////////////////////
          //
-         // Sprite‚Ì‰ñ“]ƒƒ\ƒbƒh(add)
+         // Spriteã®å›è»¢ãƒ¡ã‚½ãƒƒãƒ‰(add)
          //
          // ////////////////////////////////////////
 
@@ -253,7 +245,7 @@ import framework.model3D.BaseObject3D;
                  this.radian = radian;
          }
 
-         //ƒXƒvƒ‰ƒCƒg‚ğ‰ñ“](Box‚ÌTransformGroup‚ğ•ÏX‚·‚é)
+         //ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’å›è»¢(Boxã®TransformGroupã‚’å¤‰æ›´ã™ã‚‹)
          public void TurnRight() {
              this.radian += -Math.PI/60;
             setPosition(position);
@@ -264,78 +256,103 @@ import framework.model3D.BaseObject3D;
             setPosition(position);
          }
 
+         public void Turn() {
+             this.radian += Math.PI/100000;
+            setPosition(position);
+         }
+
+
 
          // //////////////////////////////
          //
-         // ƒvƒŒƒCƒ„[‚ğ¶•ûŒü‚É“®‚©‚·ƒƒ\ƒbƒh
+         // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å·¦æ–¹å‘ã«å‹•ã‹ã™ãƒ¡ã‚½ãƒƒãƒ‰
         //
          // //////////////////////////////
 
          /**
-          * ƒLƒƒƒ‰ƒNƒ^‚ÌˆÊ’u‚ğ¶•ûŒü‚É“®‚©‚·B
+          * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ä½ç½®ã‚’å·¦æ–¹å‘ã«å‹•ã‹ã™ã€‚
          *
           * @param d
-          *            “®‚©‚·—Ê
+          *            å‹•ã‹ã™é‡
          */
          public void moveLeft(double d) {
-                 this.position.addX(-1.0 * d / 100);
-      			setPosition(position);
+             this.position.addX(-1.0 * d / 100);
+ 			setPosition(position);
+
+         }
+         public void moveLeft(double d, boolean b) {
+             this.position.addX(-1.0 * d / 100);
+
          }
 
          // //////////////////////////////
          //
-         // ƒvƒŒƒCƒ„[‚ğ‰E•ûŒü‚É“®‚©‚·ƒƒ\ƒbƒh
+         // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å³æ–¹å‘ã«å‹•ã‹ã™ãƒ¡ã‚½ãƒƒãƒ‰
         //
          // //////////////////////////////
 
          /**
-          * ƒLƒƒƒ‰ƒNƒ^‚ÌˆÊ’u‚ğ‰E•ûŒü‚É“®‚©‚·B
+          * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ä½ç½®ã‚’å³æ–¹å‘ã«å‹•ã‹ã™ã€‚
          *
           * @param d
-          *            “®‚©‚·—Ê
+          *            å‹•ã‹ã™é‡
          */
          public void moveRight(double d) {
-                 this.position.addX(1.0 * d / 100);
-      			setPosition(position);
+             this.position.addX(1.0 * d / 100);
+			setPosition(position);
          }
+         public void moveRight(double d, boolean b) {
+             this.position.addX(1.0 * d / 100);
+         }
+
 
          // //////////////////////////////
          //
-         // ƒvƒŒƒCƒ„[‚ğã•ûŒü‚É“®‚©‚·ƒƒ\ƒbƒh
+         // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ä¸Šæ–¹å‘ã«å‹•ã‹ã™ãƒ¡ã‚½ãƒƒãƒ‰
         //
          // //////////////////////////////
 
          /**
-          * ƒLƒƒƒ‰ƒNƒ^‚ÌˆÊ’u‚ğã•ûŒü‚É“®‚©‚·B
+          * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ä½ç½®ã‚’ä¸Šæ–¹å‘ã«å‹•ã‹ã™ã€‚
          *
           * @param d
-          *            “®‚©‚·—Ê
+          *            å‹•ã‹ã™é‡
          */
          public void moveUp(double d) {
-                 this.position.addY(1.0 * d / 100);
-      			setPosition(position);
+             this.position.addY(1.0 * d / 100);
+ 			setPosition(position);
          }
+         public void moveUp(double d, boolean b) {
+             this.position.addY(1.0 * d / 100);
+
+         }
+
 
          // //////////////////////////////
          //
-         // ƒvƒŒƒCƒ„[‚ğ‰º•ûŒü‚É“®‚©‚·ƒƒ\ƒbƒh
+         // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ä¸‹æ–¹å‘ã«å‹•ã‹ã™ãƒ¡ã‚½ãƒƒãƒ‰
         //
          // //////////////////////////////
 
          /**
-          * ƒLƒƒƒ‰ƒNƒ^‚ÌˆÊ’u‚ğ‰º•ûŒü‚É“®‚©‚·B
+          * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ä½ç½®ã‚’ä¸‹æ–¹å‘ã«å‹•ã‹ã™ã€‚
          *
           * @param d
-          *            “®‚©‚·—Ê
+          *            å‹•ã‹ã™é‡
          */
          public void moveDown(double d) {
                  this.position.addY(-1.0 * d / 100);
      			setPosition(position);
          }
+         public void moveDown(double d, boolean b) {
+             this.position.addY(-1.0 * d / 100);
+
+         }
+
 
          // //////////////////////////////
          //
-         // (private) ˆÚ“®‚Æ‰ñ“]‚ğ‡¬‚·‚éŠÖ”
+         // (private) ç§»å‹•ã¨å›è»¢ã‚’åˆæˆã™ã‚‹é–¢æ•°
         //
          // //////////////////////////////
 
@@ -367,32 +384,32 @@ import framework.model3D.BaseObject3D;
 
          // //////////////////////////////
          //
-         // Õ“Ë”»’èŠÖ˜A‚Ìƒƒ\ƒbƒh
+         // è¡çªåˆ¤å®šé–¢é€£ã®ãƒ¡ã‚½ãƒƒãƒ‰
         //
          // //////////////////////////////
 
          /**
-          * Õ“Ë”»’è‚ÌBounding Spherei‹«ŠE‹…j‚ğcollisionRadius‚Åİ’è‚·‚é
+          * è¡çªåˆ¤å®šã®Bounding Sphereï¼ˆå¢ƒç•Œçƒï¼‰ã‚’collisionRadiusã§è¨­å®šã™ã‚‹
          *
           * @param collisionRadius
-          *            -- BoundingSphere‚Ì”¼Œa
+          *            -- BoundingSphereã®åŠå¾„
          */
          public void setCollisionRadius(double collisionRadius) {
                  this.collisionRadius = collisionRadius;
          }
 
          /**
-          * Õ“Ë”»’è‚ÌBounding Spherei‹«ŠE‹…j‚Ì”¼Œa‚ğ•Ô‚·
+          * è¡çªåˆ¤å®šã®Bounding Sphereï¼ˆå¢ƒç•Œçƒï¼‰ã®åŠå¾„ã‚’è¿”ã™
          *
-          * @return@ BoundingSphere‚Ì”¼Œa
+          * @returnã€€ BoundingSphereã®åŠå¾„
          */
          public double getCollisionRadius() {
                  return collisionRadius;
          }
 
          /**
-          * ƒCƒ[ƒW‚ğ•ÏX‚·‚é
-         * @param imageFile ƒCƒ[ƒWƒtƒ@ƒCƒ‹–¼
+          * ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’å¤‰æ›´ã™ã‚‹
+         * @param imageFile ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«å
          */
          public void setImage(String imageFile) {
                  Appearance appearance = box.getAppearance();
