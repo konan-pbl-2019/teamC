@@ -150,7 +150,12 @@ import framework.model3D.BaseObject3D;
          public void setPosition(double x, double y) {
                  position.set(x, y);
                  Transform3D t3d = new Transform3D();
-                 t3d.setTranslation(new Vector3d(x, y, depth));
+                 t3d.setTranslation(new Vector3d(x, y, 0));
+                 Transform3D radian2 = new Transform3D();
+                 radian2.rotZ(this.radian);
+                 System.out.println(t3d);
+                 System.out.println("rd" + radian2);
+                 radian2.mul(t3d);
                  transformGroup.setTransform(t3d);
          }
 
@@ -165,6 +170,9 @@ import framework.model3D.BaseObject3D;
                  position.set(x, y);
                  Transform3D t3d = new Transform3D();
                  t3d.setTranslation(new Vector3d(x, y, z));
+                 Transform3D radian2 = new Transform3D();
+                 radian2.rotZ(this.radian);
+                 radian2.mul(t3d);
                  transformGroup.setTransform(t3d);
          }
 
@@ -252,39 +260,13 @@ import framework.model3D.BaseObject3D;
 
          //ÉXÉvÉâÉCÉgÇâÒì](BoxÇÃTransformGroupÇïœçXÇ∑ÇÈ)
          public void TurnRight() {
-                 //Transform3DÇê∂ê¨
-                Transform3D transform = new Transform3D();
-                 Transform3D transform2 = new Transform3D();
-
-             //Transform3DÇ…ÅAYé≤ÇâÒì]é≤Ç∆ÇµÇƒ45ìxÅiÉŒ/4ÉâÉWÉAÉìÅjÇÃâÒì]Çìoò^
-                transform.set(new Vector3d(getPosition().getX(), getPosition().getY(), 0));
-                 radian += -Math.PI/60;
-
-             transform2.rotZ(radian);
-
-             //çáê¨
-            transform.mul(transform2);
-
-             //TransformGroupÇ…Transform3DÇìoò^ÅB
-            getTransformGroupToPlace().setTransform(transform);
+             this.radian += -Math.PI/60;
+            setPosition(position);
          }
 
          public void TurnLeft() {
-                 //Transform3DÇê∂ê¨
-                Transform3D transform = new Transform3D();
-                 Transform3D transform2 = new Transform3D();
-
-             //Transform3DÇ…ÅAYé≤ÇâÒì]é≤Ç∆ÇµÇƒ45ìxÅiÉŒ/4ÉâÉWÉAÉìÅjÇÃâÒì]Çìoò^
-                transform.set(new Vector3d(getPosition().getX(), getPosition().getY(), 0));
-                 radian += Math.PI/60;
-
-             transform2.rotZ(radian);
-
-             //çáê¨
-            transform.mul(transform2);
-
-             //TransformGroupÇ…Transform3DÇìoò^ÅB
-            getTransformGroupToPlace().setTransform(transform);
+             this.radian += Math.PI/60;
+            setPosition(position);
          }
 
 
@@ -302,7 +284,7 @@ import framework.model3D.BaseObject3D;
          */
          public void moveLeft(double d) {
                  this.position.addX(-1.0 * d / 100);
-                 MulMoveRadian();
+      			setPosition(position);
          }
 
          // //////////////////////////////
@@ -319,7 +301,7 @@ import framework.model3D.BaseObject3D;
          */
          public void moveRight(double d) {
                  this.position.addX(1.0 * d / 100);
-                 MulMoveRadian();
+      			setPosition(position);
          }
 
          // //////////////////////////////
@@ -336,7 +318,7 @@ import framework.model3D.BaseObject3D;
          */
          public void moveUp(double d) {
                  this.position.addY(1.0 * d / 100);
-                 MulMoveRadian();
+      			setPosition(position);
          }
 
          // //////////////////////////////
@@ -353,7 +335,7 @@ import framework.model3D.BaseObject3D;
          */
          public void moveDown(double d) {
                  this.position.addY(-1.0 * d / 100);
-                 MulMoveRadian();
+     			setPosition(position);
          }
 
          // //////////////////////////////
@@ -366,7 +348,7 @@ import framework.model3D.BaseObject3D;
                  Transform3D move = new Transform3D();
                  Transform3D radian = new Transform3D();
                  move.set( new Vector3d(getPosition().getX(), getPosition().getY(), 0));
-                 radian.set(getRadian());
+                 radian.rotZ(getRadian());
                  move.mul(radian);
                  getTransformGroupToPlace().setTransform(move);
          }
