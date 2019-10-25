@@ -33,7 +33,7 @@ public class Player2Controller implements IController{
 			System.out.println("TURN_RIGHT2");
 		}
 		if (virtualController.isKeyDown(1, RWTVirtualController.TURN_LEFT2)) {
-			people.TurnRight();
+			people.TurnLeft();
 			System.out.println("TURN_LEFT2");
 		}
 		if (virtualController.isKeyDown(1, RWTVirtualController.ATTACK_WEAPON2)) {
