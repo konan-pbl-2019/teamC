@@ -35,7 +35,6 @@ public class GenerateEnemyManager {
 	public void Run() {
 		timer.IncreaseByOne();
 		timercount.IncreaseByOne();
-		timerdiflevel.IncreaseByOne();
 		randomnumx=randomx.nextInt(3);
 		randomnumy=randomy.nextDouble();
 		randomnumside=randomside.nextInt(5);
@@ -63,9 +62,47 @@ public class GenerateEnemyManager {
 				}
 			}
 		}else if(timercount.GetTimeElapsed()<=stage2) {
-
+			timerdiflevel.IncreaseByOne();
 			if(randomenemyselect<=80-(int)timerdiflevel.GetTimeElapsed()) {
-
+				if(randomnumx>1) {
+					if(timer.IsTimeOver() && exerciseGame.enemies.size() < maxEnemy) {
+						System.out.println("num="+exerciseGame.enemies.size());
+						BasePeople enemy = new Enemy1(new Sprite("data\\imagesTeamC\\knife.gif"), new Vector2(1,1), 0, new Vector2(0,0), exerciseGame);
+						enemy.Display(universe);
+						exerciseGame.enemies.add(enemy);
+						enemy.GetImage().setPosition(new Position2D((randomnumx-1)*20, (randomnumy-0.5)*(40+randomnumheight)));
+						timer.Reset();
+					}
+				}else if(randomnumx<1) {
+					if(timer.IsTimeOver() && exerciseGame.enemies.size() < maxEnemy) {
+						System.out.println(exerciseGame.enemies.size());
+						BasePeople enemy = new Enemy1(new Sprite("data\\imagesTeamC\\knife.gif"), new Vector2(1,1), 0, new Vector2(0,0), exerciseGame);
+						enemy.Display(universe);
+						exerciseGame.enemies.add(enemy);
+						enemy.GetImage().setPosition(new Position2D((randomnumx-1)*20, (randomnumy-0.5)*(40+randomnumheight)));
+						timer.Reset();
+					}
+				}
+			}else {
+				if(randomnumx>1) {
+					if(timer.IsTimeOver() && exerciseGame.enemies.size() < maxEnemy) {
+						System.out.println("num="+exerciseGame.enemies.size());
+						BasePeople enemy = new Enemyspeed(new Sprite("data\\imagesTeamC\\knife.gif"), new Vector2(1,1), 0, new Vector2(0,0), exerciseGame);
+						enemy.Display(universe);
+						exerciseGame.enemies.add(enemy);
+						enemy.GetImage().setPosition(new Position2D((randomnumx-1)*20, (randomnumy-0.5)*(40+randomnumheight)));
+						timer.Reset();
+					}
+				}else if(randomnumx<1) {
+					if(timer.IsTimeOver() && exerciseGame.enemies.size() < maxEnemy) {
+						System.out.println(exerciseGame.enemies.size());
+						BasePeople enemy = new Enemyspeed(new Sprite("data\\imagesTeamC\\knife.gif"), new Vector2(1,1), 0, new Vector2(0,0), exerciseGame);
+						enemy.Display(universe);
+						exerciseGame.enemies.add(enemy);
+						enemy.GetImage().setPosition(new Position2D((randomnumx-1)*20, (randomnumy-0.5)*(40+randomnumheight)));
+						timer.Reset();
+					}
+				}
 			}
 		}
 	}
