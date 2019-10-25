@@ -26,7 +26,7 @@ public class ExerciseGame extends SimpleShootingGame {
 	boolean isInit = false;
 	Universe thisUniverse;
 	Sprite myShip;
-	private Sound3D BGM1 = BGM3D.registerBGM("data\\pocha\\attack.wav");
+	private Sound3D BGM1 = BGM3D.registerBGM("data\\ImagesTeamC\\fightbgm.WAV");
 	Sound3D sound1 = new Sound3D("data\\pocha\\attack.wav");
 	Sound3D sound2 = new Sound3D("data\\pocha\\attack.wav");
 	Sound3D sound3 = new Sound3D("data\\pocha\\attack.wav");
@@ -72,7 +72,7 @@ public class ExerciseGame extends SimpleShootingGame {
 		sound3.play();
 
 		// ---------------ui------------------
-		BaseObject guibar = new BaseObject(new Sprite("data\\ImagesTeamC\\statusbase.png",20.0f,4.0f,1), new Vector2(0,0), 0, new Vector2(0,-13));
+		BaseObject guibar = new BaseObject(new Sprite("data\\ImagesTeamC\\statusbase.png",20.0f,4.0f), new Vector2(0,0), 0, new Vector2(0,0));
 		guibar.Display(universe);
 		
 		BaseObject gui1P = new BaseObject(new Sprite("data\\ImagesTeamC\\1P.jpg"), new Vector2(10,10), 0, new Vector2(-13,-12));
@@ -136,7 +136,7 @@ public class ExerciseGame extends SimpleShootingGame {
 		enemies.add(enemy5);
 
 		// ---------------shelter------------------
-		shelter = new Shelter(new Sprite("data\\ImagesTeamC\\shelter.png",2.5f, 3.0f), new Vector2(0,0), 0, new Vector2(0,1), this);
+		shelter = new Shelter(new Sprite("data\\ImagesTeamC\\shelter.gif",2.5f, 3.0f), new Vector2(0,0), 0, new Vector2(0,1), this);
 		shelter.Display(universe);
 	}
 
