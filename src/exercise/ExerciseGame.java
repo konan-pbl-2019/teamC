@@ -114,7 +114,7 @@ public class ExerciseGame extends SimpleShootingGame {
 
 		generateEnemyManager = new GenerateEnemyManager(universe, this);
 
-		BasePeople enemy = new Enemy1(new Sprite("data\\imagesTeamC\\knife.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(-10,0), this);
+		BasePeople enemy = new Enemy1(new Sprite("data\\imagesTeamC\\knife.jpg", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(-10,0), this);
 		enemy.Display(universe);
 		enemy.GetImage().setPosition(new Position2D(-10, 0.1f));
 		BasePeople enemy2 = new Enemy1(new Sprite("data\\imagesTeamC\\knife.gif", 0.66f, 1.0f), new Vector2(1,1), 0, new Vector2(-10,0), this);
