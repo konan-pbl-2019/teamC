@@ -23,6 +23,10 @@ import framework.model3D.BackgroundBox;
 import framework.model3D.Universe;
 
 public class ExerciseGame extends SimpleShootingGame {
+	Timer timer = new Timer();
+	Sprite back = new Sprite("data\\imagesTeamC\\nightforest.jpg", 15, 15);
+	boolean start = true;
+	boolean finish = false;
 	boolean isInit = false;
 	Universe thisUniverse;
 	Sprite myShip;
@@ -47,6 +51,7 @@ public class ExerciseGame extends SimpleShootingGame {
 	BasePeople player2;
 	@Override
 	public void init(Universe universe) {
+		timer.SetTimeOut(60);
 		thisUniverse = universe;
 		// 蟷ｳ陦悟�画ｺ舌ｒ驟咲ｽｮ縺吶ｋ
         DirectionalLight dirlight = new DirectionalLight(
@@ -64,7 +69,7 @@ public class ExerciseGame extends SimpleShootingGame {
 		buildSkyBox(universe);
 
 		setViewRange(30, 30);
-		
+
 		//---------------sound------------------
 		BGM3D.playBGM(BGM1);
 		sound1.play();
@@ -74,7 +79,7 @@ public class ExerciseGame extends SimpleShootingGame {
 		// ---------------ui------------------
 		BaseObject guibar = new BaseObject(new Sprite("data\\ImagesTeamC\\statusbase.png",20.0f,4.0f), new Vector2(0,0), 0, new Vector2(0,0));
 		guibar.Display(universe);
-		
+
 		BaseObject gui1P = new BaseObject(new Sprite("data\\ImagesTeamC\\1P.jpg"), new Vector2(10,10), 0, new Vector2(-13,-12));
 		gui1P.Display(universe);
 		BaseObject gui2P = new BaseObject(new Sprite("data\\ImagesTeamC\\2P1.jpg"), new Vector2(0,0), 0, new Vector2(2,-12));
@@ -137,7 +142,6 @@ public class ExerciseGame extends SimpleShootingGame {
 
 		// ---------------shelter------------------
 		shelter = new Shelter(new Sprite("data\\ImagesTeamC\\shelter.gif",2.5f, 3.0f), new Vector2(0,0), 0, new Vector2(0,1), this);
-		shelter.Display(universe);
 	}
 
 	private void initForPlayer(RWTVirtualController virtualController) {
@@ -157,6 +161,21 @@ public class ExerciseGame extends SimpleShootingGame {
 
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
+		if(start == true) {
+			back.setImage("data\\imagesTeamC\\OP.jpg");
+			if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
+				back.setImage("data\\imagesTeamC\\nightforest.jpg");
+				shelter.Display(universe);
+				start = false;
+			}
+			return;
+		}
+		if(finish == true) {
+			back.setImage("data\\imagesTeamC\\gameover.jpeg");
+			return;
+		}
+
+
 		if(isInit == false)initForPlayer(virtualController);
 		generateEnemyManager.Run();
 		for(int i=0; i<enemies.size(); i++) {
@@ -183,6 +202,21 @@ public class ExerciseGame extends SimpleShootingGame {
 		guiHP2full.Run(player2, this);
 
 		shelter.Run();
+		if(shelter.GetParameter().GetHp() <= 0) {
+			timer.IncreaseByOne();
+			if(timer.IsTimeOver()) {
+				for(int i=0; i<enemies.size(); i++) {
+					thisUniverse.displace(enemies.get(i).GetImage());
+					enemies.remove(i);
+				}
+				for(int i=0; i<players.size(); i++) {
+					thisUniverse.displace(players.get(i).GetImage());
+					players.remove(i);
+				}
+				thisUniverse.displace(shelter.GetImage());
+				finish = true;
+			}
+		}
 	}
 
 	@Override
@@ -198,11 +232,11 @@ public class ExerciseGame extends SimpleShootingGame {
 	 * @param universe
 	 */
 	private void buildSkyBox(Universe universe) {
-		TextureLoader loaderTop = new TextureLoader("data\\imagesTeamC\\nightforest.jpg",
+		TextureLoader loaderTop = new TextureLoader("data\\imagesTeamC\\OP.jpg",
 				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP,
 				null);
 		Texture textureTop = loaderTop.getTexture();
-		TextureLoader loaderBottom = new TextureLoader("data\\imagesTeamC\\nightforest.jpg",
+		TextureLoader loaderBottom = new TextureLoader("data\\imagesTeamC\\OP.jpg",
 				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP,
 				null);
 		Texture textureBottom = loaderBottom.getTexture();
@@ -227,7 +261,6 @@ public class ExerciseGame extends SimpleShootingGame {
 				textureSouth, textureEast, textureTop, textureBottom);
 		BoundingSphere bs = new BoundingSphere();
 		bs.setRadius(1000);
-		background.setApplicationBounds(bs);
-		universe.place(background);
+		universe.place(back);
 	}
 }

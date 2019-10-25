@@ -1,6 +1,5 @@
 package framework.gameMain;
 
-import java.awt.Canvas;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -20,7 +19,6 @@ import framework.RWT.RWTContainer;
 import framework.RWT.RWTFrame3D;
 import framework.RWT.RWTVirtualController;
 import framework.RWT.RWTVirtualKey;
-import framework.game2D.OvergroundActor2D;
 import framework.model3D.Position3D;
 import framework.model3D.Universe;
 import framework.physics.PhysicsUtility;
@@ -45,7 +43,7 @@ public abstract class SimpleShootingGame extends AbstractGame implements
 	// 見える範囲を幅と高さで指定して、その値をグローバル変数にしています。
 	protected int viewRangeWidth;
 	protected int viewRangeHeight;
-	
+
 	public SimpleShootingGame() {
 		PhysicsUtility.setGravityDirection(new Vector3d(0.0, 0.0, 0.0));
 	}
@@ -54,7 +52,7 @@ public abstract class SimpleShootingGame extends AbstractGame implements
 	protected IGameState getCurrentGameState() {
 		return currentState;
 	}
-	
+
 	protected void setCurrentGameState(IGameState state) {
 		currentState = state;
 	}
@@ -140,7 +138,7 @@ public abstract class SimpleShootingGame extends AbstractGame implements
 			}
 		};
 	}
-	
+
 	protected void changeContainer(RWTContainer container) {
 		frame.setContentPane(container);
 		GraphicsConfiguration gc = null;
@@ -155,7 +153,7 @@ public abstract class SimpleShootingGame extends AbstractGame implements
 			gct3D.setStencilSize(8);
 			gc = gd.getBestConfiguration(gct3D);
 		}
-		container.build(gc);		
+		container.build(gc);
 	}
 
 	protected void setViewRange(int width, int height) {
