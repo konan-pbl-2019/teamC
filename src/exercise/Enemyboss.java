@@ -1,21 +1,20 @@
-
 package exercise;
 
 import java.util.ArrayList;
 
 import framework.game2D.Sprite;
 
-public class Enemyspeed extends BasePeople {
+public class Enemyboss extends BasePeople {
 
 	private boolean isInit = false;
 	ExerciseGame exerciseGame;
 	ArrayList<BasePeople> opponentPeoples = new ArrayList<BasePeople>();
 	ArrayList<BaseObject> opponentObjects = new ArrayList<BaseObject>();
 
-	public Enemyspeed(Sprite fimage, Vector2 fsize, float fradian, Vector2 fposition, ExerciseGame fexerciseGame) {
+	public Enemyboss(Sprite fimage, Vector2 fsize, float fradian, Vector2 fposition, ExerciseGame fexerciseGame) {
 		super(fimage, fsize, fradian, fposition);
 		super.SetController(new EnemyController());
-		super.SetParameter(new ActorParameter(10, 10, 10, 10, 25));
+		super.SetParameter(new ActorParameter(300, 300, 10, 10, 0.1f));
 		exerciseGame = fexerciseGame;
 	}
 

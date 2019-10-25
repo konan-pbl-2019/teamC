@@ -12,7 +12,7 @@ public class PeopleDamaged {
 				if(people.GetParameter().GetHp()<=0) {
 					people.GetImage().setImage("data\\imagesTeamC\\bom.gif");
 				}
-				int moveValue = 10;
+				int moveValue = 10 + (int)people.GetParameter().GetSpeed() * 3;
 				if(people.GetImage().getPosition().getX()<=opponent.GetImage().getPosition().getX())people.GetImage().moveLeft(moveValue);
 				else if(people.GetImage().getPosition().getX()>opponent.GetImage().getPosition().getX())people.GetImage().moveRight(moveValue);
 				if(people.GetImage().getPosition().getY()<=opponent.GetImage().getPosition().getY())people.GetImage().moveDown(moveValue);
