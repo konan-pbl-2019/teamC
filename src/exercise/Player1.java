@@ -14,7 +14,7 @@ public class Player1 extends BasePeople {
 	public Player1(Sprite fimage, Vector2 fsize, float fradian, Vector2 fposition, RWTVirtualController fvirtualController, ExerciseGame fexerciseGame) {
 		super(fimage, fsize, fradian, fposition);
 		super.SetController(new Player1Controller(fvirtualController));
-		super.SetParameter(new ActorParameter(10, 10, 10, 10, 10));
+		super.SetParameter(new ActorParameter(1000, 1000, 10, 10, 10));
 		exerciseGame = fexerciseGame;
 	}
 	private void init() {

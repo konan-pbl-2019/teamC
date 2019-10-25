@@ -12,16 +12,16 @@ public class Player1Controller implements IController{
 	}
 	public void Run2(BasePeople people, ExerciseGame exerciseGame) {
 		if (virtualController.isKeyDown(0, RWTVirtualController.RIGHT)) {
-			people.GetImage().moveRight(3);
+			people.MoveRight();
 		}
 		if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
-			people.GetImage().moveLeft(3);
+			people.MoveLeft();
 		}
 		if (virtualController.isKeyDown(0, RWTVirtualController.UP)) {
-			people.GetImage().moveUp(3);
+			people.MoveUp();
 		}
 		if (virtualController.isKeyDown(0, RWTVirtualController.DOWN)) {
-			people.GetImage().moveDown(3);
+			people.MoveDown();
 		}
 		if (virtualController.isKeyDown(0, RWTVirtualController.TURN_RIGHT)) {
 			//people.GetImage().getTransformGroupToPlace().set

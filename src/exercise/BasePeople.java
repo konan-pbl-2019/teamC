@@ -95,7 +95,7 @@ public abstract class BasePeople {
 			BaseObject knife = new Knife1(new Sprite("data\\imagesTeamC\\knife.gif", 0.66f, 1f), new Vector2(1,1), 0, new Vector2(0,0), exerciseGame);
 			knife.Display(exerciseGame.thisUniverse);
 			exerciseGame.Knifes.add(knife);
-			knife.GetImage().setPosition(new Position2D(GetImage().getPosition().getX() - GetImage().scaleX, GetImage().getPosition().getY()));
+			knife.GetImage().setPosition(new Position2D(GetImage().getPosition().getX() - GetImage().scaleX * Math.sin(radian)*2, GetImage().getPosition().getY() + GetImage().scaleY * Math.cos(radian)*2));
 			timer.Reset();
 			timer.SetTimeOut(attackSpd);
 		}
@@ -140,6 +140,78 @@ public abstract class BasePeople {
 	    //TransformGroup‚ÉTransform3D‚ğ“o˜^B
 	    GetImage().getTransformGroupToPlace().setTransform(transform);
 	}
+	//ƒXƒvƒ‰ƒCƒg‚ğ‰ñ“](Box‚ÌTransformGroup‚ğ•ÏX‚·‚é)
+		public void MoveRight() {
+			//Transform3D‚ğ¶¬
+			Transform3D transform = new Transform3D();
+			Transform3D transform2 = new Transform3D();
+			GetImage().moveRight(3, true);
+
+		    //Transform3D‚ÉAY²‚ğ‰ñ“]²‚Æ‚µ‚Ä45“xiƒÎ/4ƒ‰ƒWƒAƒ“j‚Ì‰ñ“]‚ğ“o˜^
+			transform.set(new Vector3d(GetImage().getPosition().getX(), GetImage().getPosition().getY(), 0));
+
+		    transform2.rotZ(radian);
+
+		    //‡¬
+		    transform.mul(transform2);
+
+		    //TransformGroup‚ÉTransform3D‚ğ“o˜^B
+		    GetImage().getTransformGroupToPlace().setTransform(transform);
+		}
+
+		public void MoveLeft() {
+			//Transform3D‚ğ¶¬
+			Transform3D transform = new Transform3D();
+			Transform3D transform2 = new Transform3D();
+			GetImage().moveLeft(3, true);
+
+		    //Transform3D‚ÉAY²‚ğ‰ñ“]²‚Æ‚µ‚Ä45“xiƒÎ/4ƒ‰ƒWƒAƒ“j‚Ì‰ñ“]‚ğ“o˜^
+			transform.set(new Vector3d(GetImage().getPosition().getX(), GetImage().getPosition().getY(), 0));
+		    transform2.rotZ(radian);
+
+		    //‡¬
+		    transform.mul(transform2);
+
+		    //TransformGroup‚ÉTransform3D‚ğ“o˜^B
+		    GetImage().getTransformGroupToPlace().setTransform(transform);
+		}
+		//ƒXƒvƒ‰ƒCƒg‚ğ‰ñ“](Box‚ÌTransformGroup‚ğ•ÏX‚·‚é)
+		public void MoveUp() {
+			//Transform3D‚ğ¶¬
+			Transform3D transform = new Transform3D();
+			Transform3D transform2 = new Transform3D();
+			GetImage().moveUp(3, true);
+
+		    //Transform3D‚ÉAY²‚ğ‰ñ“]²‚Æ‚µ‚Ä45“xiƒÎ/4ƒ‰ƒWƒAƒ“j‚Ì‰ñ“]‚ğ“o˜^
+			transform.set(new Vector3d(GetImage().getPosition().getX(), GetImage().getPosition().getY(), 0));
+
+		    transform2.rotZ(radian);
+
+		    //‡¬
+		    transform.mul(transform2);
+
+		    //TransformGroup‚ÉTransform3D‚ğ“o˜^B
+		    GetImage().getTransformGroupToPlace().setTransform(transform);
+		}
+
+		public void MoveDown() {
+			//Transform3D‚ğ¶¬
+			Transform3D transform = new Transform3D();
+			Transform3D transform2 = new Transform3D();
+			GetImage().moveDown(3, true);
+
+		    //Transform3D‚ÉAY²‚ğ‰ñ“]²‚Æ‚µ‚Ä45“xiƒÎ/4ƒ‰ƒWƒAƒ“j‚Ì‰ñ“]‚ğ“o˜^
+			transform.set(new Vector3d(GetImage().getPosition().getX(), GetImage().getPosition().getY(), 0));
+		    transform2.rotZ(radian);
+
+		    //‡¬
+		    transform.mul(transform2);
+
+		    //TransformGroup‚ÉTransform3D‚ğ“o˜^B
+		    GetImage().getTransformGroupToPlace().setTransform(transform);
+		}
+		public void Die() {
+		}
 
 
 	public abstract void Run();

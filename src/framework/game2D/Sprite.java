@@ -152,10 +152,10 @@ import framework.model3D.BaseObject3D;
                  Transform3D t3d = new Transform3D();
                  t3d.setTranslation(new Vector3d(x, y, 0));
                  Transform3D radian2 = new Transform3D();
-                 radian2.rotZ(this.radian);
+                 radian2.rotX(this.radian);
                  System.out.println(t3d);
-                 System.out.println("rd" + radian2);
-                 radian2.mul(t3d);
+                 System.out.println("rd = " + radian);
+                 t3d.mul(radian2);
                  transformGroup.setTransform(t3d);
          }
 
@@ -166,14 +166,6 @@ import framework.model3D.BaseObject3D;
           * @param y
           */
          public void setPosition(double x, double y, double z) {
-                 depth = z;
-                 position.set(x, y);
-                 Transform3D t3d = new Transform3D();
-                 t3d.setTranslation(new Vector3d(x, y, z));
-                 Transform3D radian2 = new Transform3D();
-                 radian2.rotZ(this.radian);
-                 radian2.mul(t3d);
-                 transformGroup.setTransform(t3d);
          }
 
          // インターフェースの実装
@@ -269,6 +261,12 @@ import framework.model3D.BaseObject3D;
             setPosition(position);
          }
 
+         public void Turn() {
+             this.radian += Math.PI/100000;
+            setPosition(position);
+         }
+
+
 
          // //////////////////////////////
          //
@@ -283,8 +281,13 @@ import framework.model3D.BaseObject3D;
           *            動かす量
          */
          public void moveLeft(double d) {
-                 this.position.addX(-1.0 * d / 100);
-      			setPosition(position);
+             this.position.addX(-1.0 * d / 100);
+ 			setPosition(position);
+
+         }
+         public void moveLeft(double d, boolean b) {
+             this.position.addX(-1.0 * d / 100);
+
          }
 
          // //////////////////////////////
@@ -300,9 +303,13 @@ import framework.model3D.BaseObject3D;
           *            動かす量
          */
          public void moveRight(double d) {
-                 this.position.addX(1.0 * d / 100);
-      			setPosition(position);
+             this.position.addX(1.0 * d / 100);
+			setPosition(position);
          }
+         public void moveRight(double d, boolean b) {
+             this.position.addX(1.0 * d / 100);
+         }
+
 
          // //////////////////////////////
          //
@@ -317,9 +324,14 @@ import framework.model3D.BaseObject3D;
           *            動かす量
          */
          public void moveUp(double d) {
-                 this.position.addY(1.0 * d / 100);
-      			setPosition(position);
+             this.position.addY(1.0 * d / 100);
+ 			setPosition(position);
          }
+         public void moveUp(double d, boolean b) {
+             this.position.addY(1.0 * d / 100);
+
+         }
+
 
          // //////////////////////////////
          //
@@ -337,6 +349,11 @@ import framework.model3D.BaseObject3D;
                  this.position.addY(-1.0 * d / 100);
      			setPosition(position);
          }
+         public void moveDown(double d, boolean b) {
+             this.position.addY(-1.0 * d / 100);
+
+         }
+
 
          // //////////////////////////////
          //
