@@ -12,7 +12,7 @@ public class Shelter extends BasePeople {
 
 	public Shelter(Sprite fimage, Vector2 fsize, float fradian, Vector2 fposition, ExerciseGame fexerciseGame) {
 		super(fimage, fsize, fradian, fposition);
-		super.SetParameter(new ActorParameter(10, 10, 0, 10, 0));
+		super.SetParameter(new ActorParameter(500, 500, 0, 10, 0));
 		exerciseGame = fexerciseGame;
 	}
 
