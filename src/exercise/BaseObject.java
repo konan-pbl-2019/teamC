@@ -59,4 +59,16 @@ public class BaseObject {
 	public void Run() {
 
 	}
+
+	public void Run(BasePeople people, ExerciseGame exerciseGame) {
+		float size = people.GetParameter().GetHp() / people.GetParameter().GetMaxHp();
+		System.out.println("asdf"+size);
+		size *= 3.0f;
+
+		exerciseGame.thisUniverse.displace(GetImage());
+		GetImage().SetScale(size, 0.5f);
+		Display(exerciseGame.thisUniverse);
+		GetImage().moveLeft((3- size)*100);
+
+	}
 }
