@@ -23,6 +23,7 @@ import framework.model3D.BackgroundBox;
 import framework.model3D.Universe;
 
 public class ExerciseGame extends SimpleShootingGame {
+	private int score = 0;
 	Timer timer = new Timer();
 	Sprite back = new Sprite("data\\imagesTeamC\\nightforest.jpg", 15, 15);
 	boolean start = true;
@@ -51,7 +52,7 @@ public class ExerciseGame extends SimpleShootingGame {
 	BasePeople player2;
 	@Override
 	public void init(Universe universe) {
-		timer.SetTimeOut(60);
+		timer.SetTimeOut(180);
 		thisUniverse = universe;
 		// 蟷ｳ陦悟�画ｺ舌ｒ驟咲ｽｮ縺吶ｋ
         DirectionalLight dirlight = new DirectionalLight(
@@ -165,7 +166,7 @@ public class ExerciseGame extends SimpleShootingGame {
 			back.setImage("data\\imagesTeamC\\OP.jpg");
 			if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
 				back.setImage("data\\imagesTeamC\\nightforest.jpg");
-				shelter.Display(universe);
+				shelter.Display(thisUniverse);
 				start = false;
 			}
 			return;
@@ -203,17 +204,16 @@ public class ExerciseGame extends SimpleShootingGame {
 
 		shelter.Run();
 		if(shelter.GetParameter().GetHp() <= 0) {
+			for(int i=0; i<enemies.size(); i++) {
+				thisUniverse.displace(enemies.get(i).GetImage());
+				enemies.remove(i);
+			}
+			for(int i=0; i<players.size(); i++) {
+				thisUniverse.displace(players.get(i).GetImage());
+				players.remove(i);
+			}
 			timer.IncreaseByOne();
 			if(timer.IsTimeOver()) {
-				for(int i=0; i<enemies.size(); i++) {
-					thisUniverse.displace(enemies.get(i).GetImage());
-					enemies.remove(i);
-				}
-				for(int i=0; i<players.size(); i++) {
-					thisUniverse.displace(players.get(i).GetImage());
-					players.remove(i);
-				}
-				thisUniverse.displace(shelter.GetImage());
 				finish = true;
 			}
 		}
