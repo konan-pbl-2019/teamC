@@ -10,7 +10,7 @@ public class PeopleDamaged {
 			if(isDamaged(people.GetImage(), opponent.GetImage())) {
 				people.GetParameter().DecreaseHp(opponent.GetParameter().GetAtk());
 				if(people.GetParameter().GetHp()<=0) {
-					people.GetImage().setImage("data\\imagesTeamC\\1P.jpg");
+					people.GetImage().setImage("data\\imagesTeamC\\bom.gif");
 				}
 				int moveValue = 10;
 				if(people.GetImage().getPosition().getX()<=opponent.GetImage().getPosition().getX())people.GetImage().moveLeft(moveValue);
