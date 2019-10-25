@@ -151,14 +151,6 @@ import framework.model3D.BaseObject3D;
                  position.set(x, y);
                  Transform3D t3d = new Transform3D();
                  t3d.setTranslation(new Vector3d(x, y, 0));
-<<<<<<< HEAD
-=======
-                 Transform3D radian2 = new Transform3D();
-                 radian2.rotZ(this.radian);
-                 System.out.println(t3d);
-                 System.out.println("rd" + radian2);
-                 radian2.mul(t3d);
->>>>>>> branch 'master' of https://github.com/konan-pbl-2019/teamC.git
                  transformGroup.setTransform(t3d);
          }
 
